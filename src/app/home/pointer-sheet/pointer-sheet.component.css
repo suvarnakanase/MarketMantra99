@@ -1,0 +1,74 @@
+table { 
+  width: 100%;
+}
+
+th.mat-header-cell{
+  text-align: center !important
+}
+
+mat-form-field-flex{
+  width: 100%;
+}
+
+.mat-cell, .mat-footer-cell {
+    font-size: 12px !important;
+}
+ 
+ 
+mat-cell.cdk-column-date.mat-column-date{
+  width: 80px;
+} 
+
+td.mat-cell, td.mat-footer-cell, th.mat-header-cell {
+    padding: 0px 11px !important;
+}
+
+
+.blueColorFont{ 
+  color:  #01147d;;
+}
+
+.fcColor{
+	background: #FFEBEE;
+}
+
+.rcColor{
+	background: #dbffe5;
+}
+
+.width95{
+	width: 95%
+}
+
+.rcUpp {
+
+}
+
+.rcUppOther{
+
+}
+
+.rcMain{
+	font-weight: 500
+}
+
+
+.fcUpp {
+
+}
+
+.fcUppOther{
+
+}
+
+.fcMain{
+	font-weight: 500
+}
+
+.fcMainPoint{
+    background: #fbdfe3
+}
+
+.rcMainPoint{
+    background: #bef5da !important
+}

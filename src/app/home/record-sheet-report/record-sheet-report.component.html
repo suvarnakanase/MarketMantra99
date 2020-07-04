@@ -1,0 +1,41 @@
+
+<div fxLayout="row" fxLayoutAlign="center center" *ngIf='showLoader' style='margin:75px 0px'>
+    <mat-spinner></mat-spinner>
+</div>
+
+<div>
+    <div fxLayout="row" fxLayoutAlign="center center">
+        
+        <div class="mat-elevation-z1   divTable fullWidth  table-wrap " *ngIf='dataSource.length !==0'>
+            <table  class="report-tbl table-striped">
+                <thead>
+                    <ng-container *ngFor="let column of displayedColumns; index as j">
+                        <th>{{column}}</th>
+                    </ng-container>
+                </thead>
+
+                <tbody>
+                    <ng-container *ngFor="let item of dataSource; index as i">
+                        <tr>
+                            <ng-container *ngFor="let p of getProperties(item); index as m">
+                                <td [ngClass]="[m==0? 'firstTd': 'centerAlign',
+                                         item[p] && item[p].includes('HIGH')  ? 'green': '',
+                                         item[p] && item[p].includes('LOW')   ? 'red': '']">{{item[p]}}</td>
+                            </ng-container>
+                        </tr>
+                    </ng-container>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="end center" class="export-wrap" >
+        <button class="export-btn" (click)='exportToExcel(dataSource)'
+        *ngIf='dataSource.length !==0 &&  isAdmin'
+        [hidden] = 'dataSource.data.length ===0'><span><mat-icon>get_app</mat-icon> EXPORT </span></button>
+        </div>
+    <!-- <button mat-raised-button (click)='exportToExcel(dataSource)'
+ *ngIf='dataSource.length !==0 &&  isAdmin'>EXPORT </button> -->
+
+</div>

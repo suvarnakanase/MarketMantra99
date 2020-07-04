@@ -1,0 +1,63 @@
+ 
+   
+  .example-container {
+    height: 400px;
+    width: 1200px;
+    overflow: auto;
+  }
+  
+  table {
+    width: 100%; 
+  }
+ 
+  th.mat-header-cell { 
+    padding: 3px;  
+}
+
+.mat-column-{
+    text-align: right;
+    width: 100px; 
+}
+
+td { 
+  border-right:  solid .5px #e4e4e4; 
+  padding-left: 3px;
+  padding-right: 3px;
+ 
+}
+
+.leftAlign{
+  text-align: left !important;
+  padding-right: 4px;
+  
+}
+
+.w50{
+  width: 50px;
+}
+.w70{
+  width: 70px;
+}
+.centerAlign{
+  text-align: center !important;
+}
+
+.rightAlign{
+  text-align: right !important;
+  padding-right: 4px;
+} 
+ 
+td.mat-column-asOfDate{
+  min-width: 78px;
+}
+  
+td.mat-column-perReturnFrCls{
+  min-width: 74px;
+}
+
+
+  
+  /* .mat-table-sticky:last-child {
+    border-left: 1px solid #e0e0e0;
+  } */
+  

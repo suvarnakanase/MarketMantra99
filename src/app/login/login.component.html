@@ -1,0 +1,40 @@
+<mat-toolbar color='primary' class="header">Market Mantra 99</mat-toolbar>
+
+<div  class='loginCard'
+      fxLayout="row" fxLayoutAlign="center center"> 
+  <mat-card  > 
+      <mat-card-title> Login to your account </mat-card-title>
+      <mat-card-subtitle> Enter your Login Credential</mat-card-subtitle>
+      <form class="loginForm ">
+      <mat-card-content> 
+          <mat-form-field class=" loginFullWidth">
+          <input matInput
+                 name='userName'
+                 [(ngModel)]="userName"
+                 placeholder="Enter your username">
+          </mat-form-field>
+
+          <mat-form-field color='primary' class="loginFullWidth">
+            <input matInput placeholder="Enter your password" 
+                  [(ngModel)]="password"
+                  name='password'
+                  [type]="hide ? 'password' : 'text'">
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </mat-form-field>
+
+
+       <div  fxLayout="row" class="loginFullWidth padTop15" fxLayoutAlign="end center">
+         <a  [routerLink]="['/home']">Forget password?</a>
+       </div>
+
+
+        <mat-card-footer class='padTop15' fxLayoutAlign="none none" fxLayout="column" >
+          <button  mat-raised-button  (click)="authenticateUser()" color='primary'>SUBMIT</button>
+        </mat-card-footer>
+
+      </mat-card-content>
+    </form>
+  </mat-card>
+
+</div>
+ 

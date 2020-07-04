@@ -1,0 +1,228 @@
+<button (click)='exportToExcel(dataSource.data)' 
+*ngIf ='isAdmin'
+[hidden] = 'dataSource.data.length ===0'>EXPORT </button>
+
+<div fxLayout="row" fxLayoutAlign="center center" 
+*ngIf ='showLoader'
+style='margin:75px 0px' >
+<mat-spinner    ></mat-spinner>
+</div>  
+<div fxLayoutAlign="center center" fxLayout="row" >
+	<div class="mat-elevation-z1 example-container tableHeight width95"   
+	[hidden] = 'dataSource.data.length ===0'>
+	<table mat-table [dataSource]="dataSource" class="tableStyle">
+
+		<ng-container matColumnDef="srNo" >
+			<th mat-header-cell *matHeaderCellDef>Sr.No</th>
+			<td mat-cell *matCellDef="let element"  
+			     > {{element.rowNum}} </td>
+		</ng-container>
+
+		<ng-container matColumnDef="date">
+			<th mat-header-cell *matHeaderCellDef>DATE</th>
+			<td mat-cell *matCellDef="let element"> {{element.strDate}} </td>
+		</ng-container>
+
+		<ng-container matColumnDef="high">
+			<th mat-header-cell *matHeaderCellDef> HIGH</th>
+			<td mat-cell *matCellDef="let element" 
+			[ngClass]="(element.isHigh && element.isHigh ==1)?'red':''"> {{element.high.toFixed(2)}} </td>
+		</ng-container>
+
+		<!-- Name Column -->
+		<ng-container matColumnDef="low">
+			<th mat-header-cell *matHeaderCellDef> LOW </th>
+			<td mat-cell *matCellDef="let element"
+			[ngClass]="(element.isHigh !== undefined && element.isHigh ==0)?'green':''"> {{element.low.toFixed(2)}} </td>
+		</ng-container>
+
+		<!-- Weight Column -->
+		<ng-container matColumnDef="closePrice">
+			<th mat-header-cell *matHeaderCellDef> CLOSE </th>
+			<td mat-cell *matCellDef="let element" class="blueColorFont"> {{element.closePrice.toFixed(2)}} </td>
+		</ng-container>
+
+
+		<ng-container matColumnDef="average">
+			<th mat-header-cell *matHeaderCellDef> AVERAGE </th>
+			<td mat-cell *matCellDef="let element"> {{  ((element.high + element.low + element.closePrice)/3).toFixed(2)}} </td>
+		</ng-container>
+		<!-- Symbol Column -->
+		<ng-container matColumnDef="range">
+			<th mat-header-cell *matHeaderCellDef> RANGE </th>
+			<td mat-cell *matCellDef="let element"> {{element.range.toFixed(2)}} </td>
+		</ng-container>
+
+
+		<ng-container matColumnDef="scenario">
+			<th mat-header-cell *matHeaderCellDef> SCENARIO </th>
+			<td mat-cell *matCellDef="let element" 
+			[ngClass]="(element.scenario=='HLC HIGHER')?'green':
+			(element.scenario=='HLC LOWER')? 'red': '' "> {{element.scenario}} </td>
+		</ng-container> 
+
+		<ng-container matColumnDef="rc14_6">
+			<th mat-header-cell *matHeaderCellDef> 14.6</th>
+			<td mat-cell class='rcColor' *matCellDef="let element"> 
+				<span class="rcUpp rcUppOther">{{element.rcUpp14_6.toFixed(2)}} </span>
+				<span class="rcMain">{{element.rc14_6.toFixed(2)}}</span>
+ <br/>				<span  class="rcLow rcLowOther">{{element.rcLow14_6.toFixed(2)}} </span> 
+			</td>
+		</ng-container> 
+
+		<ng-container matColumnDef="rc23_6">
+			<th mat-header-cell *matHeaderCellDef> 23.6</th>
+			<td mat-cell class='rcColor' *matCellDef="let element"> 
+				<span class="rcUpp rcUppOther">{{element.rcUpp23_6.toFixed(2)}} </span>
+				<span class="rcMain">{{element.rc23_6.toFixed(2)}}</span>
+ <br/>				<span  class="rcLow rcLowOther">{{element.rcLow23_6.toFixed(2)}} </span>  
+			</td>
+		</ng-container> 
+
+		<ng-container matColumnDef="rc38_2">
+			<th mat-header-cell *matHeaderCellDef> 38.2</th>
+			<td mat-cell class='rcColor rcMainPoint' *matCellDef="let element">
+				<span class="rcUpp rcUppOther">{{element.rcUpp38_2.toFixed(2)}} </span>
+				<span class="rcMain">{{element.rc38_2.toFixed(2)}}</span>  <br/> 
+				<span  class="rcLow rcLowOther">{{element.rcLow38_2.toFixed(2)}} </span>  
+			</td>
+		</ng-container> 
+
+		<ng-container matColumnDef="rc61_8">
+			<th mat-header-cell *matHeaderCellDef> 61.8</th>
+			<td mat-cell class='rcColor' *matCellDef="let element"> 
+				<span class="rcUpp rcUppOther">{{element.rcUpp61_8.toFixed(2)}} </span>
+				<span class="rcMain">{{element.rc61_8.toFixed(2)}}</span>
+ <br/>				<span  class="rcLow rcLowOther">{{element.rcLow61_8.toFixed(2)}} </span> 
+			</td>
+		</ng-container> 
+
+		<ng-container matColumnDef="rc100">
+			<th mat-header-cell *matHeaderCellDef> 100</th>
+			<td mat-cell class='rcColor rcMainPoint' *matCellDef="let element"> 
+				<span class="rcUpp rcUppOther">{{element.rcUpp100.toFixed(2)}} </span>
+				<span class="rcMain">{{element.rc100.toFixed(2)}}</span>
+	 <br/>			<span  class="rcLow rcLowOther">{{element.rcLow100.toFixed(2)}} </span> 
+		    </td>
+		</ng-container> 
+
+
+		<ng-container matColumnDef="rc127_2">
+			<th mat-header-cell *matHeaderCellDef> 127.2</th>
+			<td mat-cell class='rcColor' *matCellDef="let element"> 
+				<span class="rcUpp rcUppOther">{{element.rcUpp127_2.toFixed(2)}} </span>
+				<span class="rcMain">{{element.rc127_2.toFixed(2)}}</span> <br/>
+				<span  class="rcLow rcLowOther">{{element.rcLow127_2.toFixed(2)}} </span> 
+			</td>
+		</ng-container> 
+
+
+		<ng-container matColumnDef="rc161_8">
+			<th mat-header-cell *matHeaderCellDef>161.8</th>
+			<td mat-cell class='rcColor' *matCellDef="let element"> 
+				<span class="rcUpp rcUppOther">{{element.rcUpp161_8.toFixed(2)}} </span>
+				<span class="rcMain">{{element.rc161_8.toFixed(2)}}</span> <br/>
+				<span  class="rcLow rcLowOther">{{element.rcLow161_8.toFixed(2)}} </span> 
+			</td>
+		</ng-container> 
+
+		<ng-container matColumnDef="rc261_8">
+			<th mat-header-cell *matHeaderCellDef>261.8</th>
+			<td mat-cell class='rcMainPoint' *matCellDef="let element"> 
+				<span class="rcUpp rcUppOther">{{element.rcUpp261_8.toFixed(2)}} </span>
+				<span class="rcMain"> {{element.rc261_8.toFixed(2)}}</span> <br/>
+				<span  class="rcLow rcLowOther">{{element.rcLow261_8.toFixed(2)}} </span> 
+		    </td>
+		</ng-container> 
+
+		<!-- FALLING CHANNEL -->
+		<ng-container matColumnDef="fc14_6">
+			<th mat-header-cell *matHeaderCellDef>14.6</th>
+			<td mat-cell class='fcColor' *matCellDef="let element"> 
+				<span class="fcUpp fcUppOther">{{element.fcUpp14_6.toFixed(2)}} </span>
+				<span class="fcMain"> {{element.fc14_6.toFixed(2)}}</span> <br/>	
+				<span class="fcLow fcLowOther">{{element.fcLow14_6.toFixed(2)}} </span>  
+			</td>
+		</ng-container> 
+
+		<ng-container matColumnDef="fc23_6">
+			<th mat-header-cell *matHeaderCellDef> 23.6</th>
+			<td mat-cell class='fcColor' *matCellDef="let element">
+				<span class="fcUpp fcUppOther">{{element.fcUpp23_6.toFixed(2)}} </span>
+				<span class="fcMain"> {{element.fc23_6.toFixed(2)}} </span> <br/>
+				<span class="fcLow fcLowOther">{{element.fcLow23_6.toFixed(2)}} </span>  
+		     </td>
+		</ng-container> 
+
+		<ng-container matColumnDef="fc38_2">
+			<th mat-header-cell *matHeaderCellDef> 38.2</th>
+			<td mat-cell class='fcColor fcMainPoint' *matCellDef="let element">
+				<span class="fcUpp fcUppOther">{{element.fcUpp38_2.toFixed(2)}} </span>
+				<span class="fcMain"> {{element.fc38_2.toFixed(2)}}</span>
+ <br/>				<span class="fcLow fcLowOther">{{element.fcLow38_2.toFixed(2)}} </span>   
+		    </td>
+		</ng-container> 
+
+		<ng-container matColumnDef="fc61_8">
+			<th mat-header-cell *matHeaderCellDef> 61.8</th>
+			<td mat-cell class='fcColor' *matCellDef="let element">
+				<span class="fcUpp fcUppOther">{{element.fcUpp61_8.toFixed(2)}} </span>
+				<span class="fcMain"> {{element.fc61_8.toFixed(2)}}</span>
+ <br/>				<span class="fcLow fcLowOther">{{element.fcLow61_8.toFixed(2)}} </span>   
+			</td>
+		</ng-container> 
+
+		<ng-container matColumnDef="fc100">
+			<th mat-header-cell *matHeaderCellDef> 100</th>
+			<td mat-cell class='fcColor fcMainPoint' *matCellDef="let element">
+				<span class="fcUpp fcUppOther">{{element.fcUpp100.toFixed(2)}} </span>
+				<span class="fcMain"> {{element.fc100.toFixed(2)}}</span>
+	 <br/>			<span class="fcLow fcLowOther">{{element.fcLow100.toFixed(2)}} </span> 
+		    </td>
+		</ng-container> 
+
+
+		<ng-container matColumnDef="fc127_2">
+			<th mat-header-cell *matHeaderCellDef> 127.2</th>
+			<td mat-cell class='fcColor' *matCellDef="let element">
+				<span class="fcUpp fcUppOther">{{element.fcUpp127_2.toFixed(2)}} </span>
+				<span class="fcMain"> {{element.fc127_2.toFixed(2)}}</span> <br/>
+				<span class="fcLow fcLowOther">{{element.fcLow127_2.toFixed(2)}} </span>  
+
+		    </td>
+		</ng-container> 
+
+
+		<ng-container matColumnDef="fc161_8">
+			<th mat-header-cell *matHeaderCellDef>161.8</th>
+			<td mat-cell class='fcColor' *matCellDef="let element">
+				<span class="fcUpp fcUppOther">{{element.fcUpp161_8.toFixed(2)}} </span>
+				<span class="fcMain"> {{element.fc161_8.toFixed(2)}}</span> <br/>
+				<span class="fcLow fcLowOther">{{element.fcLow161_8.toFixed(2)}} </span>  
+
+			</td>
+		</ng-container> 
+
+		<ng-container matColumnDef="fc261_8">
+			<th mat-header-cell *matHeaderCellDef>261.8</th>
+			<td mat-cell class='fcMainPoint' *matCellDef="let element">
+				<span class="fcUpp fcUppOther">{{element.fcUpp261_8.toFixed(2)}} </span>
+				<span class="fcMain"> {{element.fc261_8.toFixed(2)}}</span> <br/>
+				<span class="fcLow fcLowOther">{{element.fcLow261_8.toFixed(2)}} </span>  
+		    </td>
+		</ng-container> 
+
+		<tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+		<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+	</table>
+
+	<!-- <mat-paginator [pageSizeOptions]="[10, 20, 30]" showFirstLastButtons></mat-paginator> -->
+</div>
+
+
+<div fxLayoutAlign="center center" fxLayout="row">
+
+	<div style='margin:15px'> 
+		<h2> </h2>
+	</div>

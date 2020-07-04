@@ -1,0 +1,85 @@
+ 
+
+
+
+<div fxLayout="row" fxLayoutAlign="center center" 
+      *ngIf ='showLoader'
+      style='margin:75px 0px' >
+<mat-spinner    ></mat-spinner>
+</div>  
+
+<div fxLayoutAlign="center center" fxLayout="row" >
+<div class="mat-elevation-z1 example-container tableHeight fullWidth table-wrap "    
+ [hidden] = 'dataSource.data.length ===0'>
+
+<table mat-table [dataSource]="dataSource" class="tableStyle "> 
+
+    <ng-container matColumnDef="srNo" >
+        <th mat-header-cell *matHeaderCellDef>Sr.No</th>
+        <td mat-cell *matCellDef="let element; let i = index;"> {{i+1}} </td>
+      </ng-container>
+   
+
+    <ng-container matColumnDef="reportDate" >
+        <th mat-header-cell *matHeaderCellDef>Date</th>
+        <td mat-cell *matCellDef="let element"> {{element.currScenarioDate | date: 'dd-MM-yyyy'}} </td>
+      </ng-container>
+
+    <ng-container matColumnDef="ticker">
+        <th mat-header-cell *matHeaderCellDef class="leftAlign">Ticker</th>
+        <td mat-cell *matCellDef="let element" class="leftAlign tickerStyle" 
+        matTooltipClass="line-broken-tooltip" 
+        [matTooltip] = "getToolTipValue(element)"
+         > {{element.ticker}} </td>
+      </ng-container>
+
+  <ng-container matColumnDef="1stAction">
+    <th mat-header-cell *matHeaderCellDef>First Action</th>
+    <td mat-cell *matCellDef="let element" class="firstActionColor" 
+    [ngClass]="(element.prevScenario=='HLC HIGHER')?'higherColor':'lowerColor'"
+          > {{element.prevScenario}} </td>
+    </ng-container>
+
+   <ng-container matColumnDef="date1">
+    <th mat-header-cell *matHeaderCellDef>Date 1</th>
+    <td mat-cell *matCellDef="let element" class="firstActionColor"
+         > {{element.prevScenarioDate | date: 'dd-MM-yyyy'}} </td>
+   </ng-container> 
+
+   <ng-container matColumnDef="2ndAction">
+    <th mat-header-cell *matHeaderCellDef>Second Action</th>
+    <td mat-cell *matCellDef="let element"  class="secondActionColor"
+    [ngClass]="(element.currScenario=='HLC HIGHER')?'higherColor':'lowerColor'"
+    matTooltip= "{{'CL: ' +element.currScenClosePrice}}"
+         > {{element.currScenario}} </td>
+   </ng-container>  
+
+   <ng-container matColumnDef="date2">
+    <th mat-header-cell *matHeaderCellDef>Date 2</th>
+    <td mat-cell *matCellDef="let element" class="secondActionColor"
+         > {{element.currScenarioDate | date: 'dd-MM-yyyy'}} </td>
+   </ng-container>
+
+   
+  <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr> 
+</table>
+
+</div>
+</div>
+
+
+<div fxLayout="row" fxLayoutAlign="end center" class="export-wrap" >
+      <button (click)='exportToExcel(dataSource.data)' 
+*ngIf ='isAdmin'
+ [hidden] = 'dataSource.data.length ===0'>EXPORT</button>
+ </div>
+ 
+<!-- <button (click)='exportToExcel(dataSource.data)' 
+*ngIf ='isAdmin'
+ [hidden] = 'dataSource.data.length ===0'>EXPORT</button> -->
+<!-- <div fxLayoutAlign="center center" fxLayout="row">
+
+<div style='margin:15px'> 
+<h2> </h2>
+</div> -->

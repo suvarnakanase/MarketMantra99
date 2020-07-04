@@ -1,0 +1,35 @@
+table { 
+  width: 100%;
+}
+
+th.mat-header-cell{
+  text-align: center !important
+}
+
+mat-form-field-flex{
+  width: 70%;
+}
+ 
+ 
+mat-cell.cdk-column-date.mat-column-date{
+  width: 80px;
+} 
+
+
+
+.blueColorFont{ 
+  color:  #01147d;;
+}
+@media screen and (max-width: 767px) {
+  table.mat-table .cdk-column-srNo {
+    display: none;
+  }
+  
+  .mat-table tr th:nth-child(2) {
+    border-left: 1px solid rgba(0,0,0,.12);
+  }
+
+  table.mat-table .mat-column-scenario{
+    min-width: 100px;
+  }
+}

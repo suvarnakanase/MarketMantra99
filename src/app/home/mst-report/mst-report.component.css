@@ -1,0 +1,74 @@
+table {
+    width: 100%; 
+  }
+ 
+  th.mat-header-cell { 
+    padding: 3px; 
+    text-align: center; 
+}  
+
+.mat-column-{
+    text-align: right;
+    width: 100px; 
+}
+
+.lightRed{
+    background: #ffe8e8;
+}
+.lightGreen{
+    background: #dbffcf;
+}
+ 
+
+.tableStyle td { 
+  border-right:  solid 0.3px #d2cfcf;
+  padding-left: 8px !important;
+  padding-right: 8px !important;
+  font-size: 13px !important
+}
+
+.first3Col{
+    background: #fbffdd;
+}
+.sec3Col{
+    background: #fff3f5;
+}
+
+ 
+
+.third3Col{
+    background: #fbffdd;
+}
+
+.leftAlign{
+  text-align: left !important;
+  padding-right: 8px;
+  
+}
+
+.centerAlign{
+  text-align: center !important;
+}
+
+.rightAlign{
+  text-align: right !important; 
+  padding-right: 8px !important;
+} 
+
+.mat-row:nth-child(odd){
+    background-color:#f9f9f9;
+    }
+
+
+    @media screen and (max-width: 1199px){
+      .tableStyle td.mat-column-date, .tableStyle td.cdk-column-date1, .tableStyle td.cdk-column-date2, .tableStyle td.cdk-column-date3, .tableStyle td.mat-column-query  {
+        min-width: 84px;
+      }
+    }
+
+    @media screen and (max-width: 768px){
+      .tableStyle td{
+        font-size: 12px !important;
+      }
+    }
+   

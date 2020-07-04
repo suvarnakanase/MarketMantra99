@@ -1,0 +1,67 @@
+
+.divTable {
+  max-width: 400px;
+  max-height: 150px;
+  overflow: scroll;
+}
+
+.firstTd{
+  background: #FFF;
+}
+
+/* Use position: sticky to have it stick to the edge
+ * and top, right, or left to choose which edge to stick to: */
+
+thead th {
+  position: -webkit-sticky; /* for Safari */
+  position: sticky;
+  top: 0;
+}
+
+tbody th {
+  position: -webkit-sticky; /* for Safari */
+  position: sticky;
+  left: 0;
+}
+
+tbody td:first-child{
+  left: 0;
+  z-index: 1;
+  position: sticky;
+  position: -webkit-sticky; 
+}
+
+
+/* To have the header in the first column stick to the left: */
+
+thead th:first-child {
+  left: 0;
+  z-index: 1;
+}
+
+
+/* Just to display it nicely: */
+
+thead th {
+  background: #000;
+  color: #FFF;
+}
+
+tbody th {
+  background: #FFF;
+  border-right: 1px solid #CCC;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+td,
+th {
+  padding: 0.5em;
+}
+
+tbody tr:nth-child(odd){
+  background-color: #4C8BF5;
+  color: #fff;
+}

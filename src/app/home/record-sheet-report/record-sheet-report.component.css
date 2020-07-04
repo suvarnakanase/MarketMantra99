@@ -1,0 +1,36 @@
+.firstTd{
+  background: #FFF;
+}
+
+.report-tbl thead th:first-child{
+  text-align: left;
+}
+
+thead th {
+  position: -webkit-sticky; /* for Safari */
+  position: sticky;
+  top: 0px;
+  left:0px;
+
+}
+
+tbody td{
+  min-width: 85px;
+}
+tbody td:first-child{
+  left: 0;
+  z-index: 1;
+  position: sticky;
+  background: #263238;
+  font-weight: 500;
+  color: #d2d2d2;
+
+  position: -webkit-sticky; 
+  background: #121750;
+    color: #E8EAF6;
+}
+
+thead th:first-child {
+  left: 0;
+  z-index: 2;
+}

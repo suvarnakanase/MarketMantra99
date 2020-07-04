@@ -1,0 +1,101 @@
+ 
+
+<div fxLayout="row" fxLayoutAlign="center center" 
+          *ngIf ='showLoader'
+          style='margin:75px 0px' >
+    <mat-spinner    ></mat-spinner>
+</div>  
+<div fxLayoutAlign="center center" fxLayout="row" >
+<div class="mat-elevation-z1 example-container tableHeight fullWidth table-wrap"   
+[hidden] = 'dataSource.data.length ===0'>
+    <table mat-table [dataSource]="dataSource" class="tableStyle">
+
+        <ng-container matColumnDef="date" sticky>
+            <th mat-header-cell *matHeaderCellDef>Date</th>
+            <td mat-cell *matCellDef="let element"> {{element.dDate}} </td>
+          </ng-container>
+
+        <ng-container matColumnDef="scriptName" sticky>
+            <th mat-header-cell *matHeaderCellDef class="leftAlign">Ticker</th>
+            <td mat-cell *matCellDef="let element" 
+                class="leftAlign tickerStyle" 
+                 matTooltipClass="line-broken-tooltip"
+                [matTooltip] = "getHLCloseToolTipValue(element)"> {{element.tickerCode}} </td>
+          </ng-container>
+   
+       <ng-container matColumnDef="scenario1" >
+        <th mat-header-cell *matHeaderCellDef>{{typeScenarioCol1}}</th>
+        <td mat-cell *matCellDef="let element" 
+            [ngClass]="(element.dScenario=='HLC HIGHER')?'higherColor':'lowerColor'"> {{element.dScenario}} </td>
+      </ng-container>
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="scenario2">
+        <th mat-header-cell *matHeaderCellDef>  {{typeScenarioCol2}}</th>
+        <td mat-cell *matCellDef="let element"
+            [ngClass]="(element.wScenario=='HLC HIGHER')?'higherColor':'lowerColor'"> {{element.wScenario}} </td>
+      </ng-container> -->
+  
+      <!-- Weight Column -->
+      <ng-container matColumnDef="average1">  
+        <th mat-header-cell *matHeaderCellDef 
+            matTooltip="Avg of high,low,close"
+            matTooltipPosition="above"> Average 1 </th>
+        <td mat-cell *matCellDef="let element" class="rightAlign"> {{element.dAvg.toFixed(2)}} </td>
+      </ng-container>
+      
+      
+      <ng-container matColumnDef="average2">
+        <th mat-header-cell *matHeaderCellDef> Average 2 </th>
+        <td mat-cell *matCellDef="let element" class="rightAlign">  
+            <div fxLayout="row" fxLayoutAlign="center center" *ngIf='element.average2 == undefined'>
+                <mat-progress-spinner  [diameter]="20" mode="indeterminate" ></mat-progress-spinner>   
+             </div>
+             {{element.average2}} 
+           </td>
+      </ng-container>
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="typOfBtm">
+        <th mat-header-cell *matHeaderCellDef> Type of btm formation </th>
+        <td mat-cell *matCellDef="let element;let i = index" 
+           [ngClass]="(element.bottomFormation=='HAB')?'lightBlue':
+                      ( element.bottomFormation=='LAB' ? 'lightGreen':'') "
+           [matTooltip]= 'element.btmObj?element.btmObj.low:0' >
+            <div fxLayout="row" fxLayoutAlign="center center"  
+            *ngIf='element.topFormation == undefined'>
+               <mat-progress-spinner  [diameter]="20" mode="indeterminate" ></mat-progress-spinner> 
+              </div>
+            {{element.bottomFormation}} 
+          </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="typeOfTop">
+          <th mat-header-cell *matHeaderCellDef> Type of top formation  </th>
+          <td mat-cell *matCellDef="let element;let i = index" 
+             [ngClass]="(element.topFormation=='HAT')?'lightOrange':  ( element.topFormation=='LAT' ? 'lightPurple':'') " 
+             [matTooltip]= 'element.topFormation?element.topObj.high: 0' > 
+             <div fxLayout="row" fxLayoutAlign="center center" *ngIf='element.topFormation == undefined'>
+                 <mat-progress-spinner  [diameter]="20" mode="indeterminate" ></mat-progress-spinner>   
+              </div>
+             {{element.topFormation}}
+            </td>
+        </ng-container> 
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+   
+    </table>
+  
+    <!-- <mat-paginator [pageSizeOptions]="[10, 20, 30]" showFirstLastButtons></mat-paginator> -->
+  </div>
+</div>
+  <div fxLayout="row" fxLayoutAlign="end center" class="export-wrap" >
+    <button class="export-btn" (click)='exportToExcel(dataSource.data)' 
+    *ngIf ='isAdmin' [hidden] = 'dataSource.data.length ===0'><span><mat-icon>get_app</mat-icon> EXPORT {{pageTitle}} </span> </button>
+    </div>
+<!-- <div fxLayoutAlign="center center" fxLayout="row">
+
+  <div style='margin:15px'> 
+      <h2> </h2>
+    </div> -->

@@ -1,0 +1,57 @@
+.toolBarAnchor {
+    text-align: end;
+    margin: 20px;
+    width:75% 
+}
+/* .example-full-width {
+    margin-right: 3px
+
+  } */
+a{
+  font-size: 12px;
+}
+ 
+
+.mat-subBtn {
+    background-color: #d2008a;
+    color: #fff;
+}
+
+
+.matIconHeight   mat-icon{
+     height: 29px;
+}
+ 
+.toolBarAnchor a {
+    font-size: 14px;
+    text-decoration: none;
+    color: #ffffff;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-stretch: semi-expanded;
+    margin: 0 12px;
+}
+
+.toolBarAnchor a:hover{
+    color: #d3d3d3;
+}
+
+/* .active{
+    color:#d3d3d3 !important;
+} */
+
+
+@media screen and (max-width: 991px) {
+    .toolBarAnchor{
+        margin: 20px 0 20px 20px;
+    }
+    .toolBarAnchor a {
+        font-size:13px;
+        margin: 0 4px;
+    }
+    .navigation .mat-button{
+        font-size:13px;
+        padding: 4px;
+    }
+
+}

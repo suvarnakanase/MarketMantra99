@@ -1,0 +1,76 @@
+
+<div fxLayout="row" fxLayoutAlign="center center" 
+          *ngIf ='showLoader'
+          style='margin:75px 0px' >
+    <mat-spinner    ></mat-spinner>
+</div>  
+<div fxLayoutAlign="center center" fxLayout="row" >
+<div class="mat-elevation-z1 example-container tableHeight fullWidth table-wrap"   
+[hidden] = 'dataSource.data.length ===0'>
+    <table mat-table [dataSource]="dataSource" class="tableStyle">
+    
+        <ng-container matColumnDef="srNo" >
+            <th mat-header-cell *matHeaderCellDef>Sr.No</th>
+            <td mat-cell *matCellDef="let element"> {{element.rowNum}} </td>
+          </ng-container>
+
+        <ng-container matColumnDef="date" sticky >
+            <th mat-header-cell *matHeaderCellDef>DATE</th>
+            <td mat-cell *matCellDef="let element" > {{element.strDate}} </td>
+          </ng-container>
+   
+      <ng-container matColumnDef="high">
+        <th mat-header-cell *matHeaderCellDef> HIGH</th>
+        <td mat-cell *matCellDef="let element" 
+            [ngClass]="(element.isHigh && element.isHigh ==1)?'red':''"> {{element.high.toFixed(2)}} </td>
+      </ng-container>
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="low">
+        <th mat-header-cell *matHeaderCellDef> LOW </th>
+        <td mat-cell *matCellDef="let element"
+            [ngClass]="(element.isHigh !== undefined && element.isHigh ==0)?'green':''"> {{element.low.toFixed(2)}} </td>
+      </ng-container>
+  
+      <!-- Weight Column -->
+      <ng-container matColumnDef="closePrice">
+        <th mat-header-cell *matHeaderCellDef> CLOSE </th>
+        <td mat-cell *matCellDef="let element" class="blueColorFont"> {{element.closePrice.toFixed(2)}} </td>
+      </ng-container>
+      
+      
+      <ng-container matColumnDef="average">
+        <th mat-header-cell *matHeaderCellDef> AVERAGE </th>
+        <td mat-cell *matCellDef="let element"> {{  ((element.high + element.low + element.closePrice)/3).toFixed(2)}} </td>
+      </ng-container>
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="range">
+        <th mat-header-cell *matHeaderCellDef> RANGE </th>
+        <td mat-cell *matCellDef="let element"> {{element.range.toFixed(2)}} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="scenario">
+          <th mat-header-cell *matHeaderCellDef> SCENARIO </th>
+          <td mat-cell *matCellDef="let element" 
+              [ngClass]="(element.scenario=='HLC HIGHER')?'green':
+                         (element.scenario=='HLC LOWER')? 'red': '' "> {{element.scenario}} </td>
+        </ng-container> 
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" ></tr>
+        
+    </table>
+  
+    <!-- <mat-paginator [pageSizeOptions]="[10, 20, 30]" showFirstLastButtons></mat-paginator> -->
+  </div>
+</div>
+<div fxLayout="row" fxLayoutAlign="end center" class="export-wrap" >
+  <button class="export-btn" (click)='exportToExcel(dataSource.data)' 
+  *ngIf ='isAdmin'
+  [hidden] = 'dataSource.data.length ===0'><span><mat-icon>get_app</mat-icon> EXPORT </span></button>
+  </div>
+<div fxLayoutAlign="center center" fxLayout="row">
+
+  
+</div>

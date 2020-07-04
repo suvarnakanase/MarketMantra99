@@ -1,0 +1,27 @@
+/* td.mat-cell, td.mat-footer-cell, th.mat-header-cell{
+    padding-right: 25px;
+    padding-left: 6px;
+} */
+
+.firstActionColor{
+    background: #f9f9f9
+}
+
+.secondActionColor{
+    background: #ffffef;
+}
+th.mat-header-cell{
+    text-align: center ;
+}
+
+@media screen and (max-width: 768px){
+    .tableStyle td{
+      font-size: 12px !important;
+    }
+
+    .tableStyle td.mat-column-reportDate, .tableStyle td.mat-column-date1, .tableStyle td.mat-column-date2{
+        min-width:82px;
+    }
+  }
+
+ 

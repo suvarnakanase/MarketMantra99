@@ -1,0 +1,30 @@
+table { 
+    width: 100%;
+  }
+  
+  th.mat-header-cell{
+    text-align: center !important
+  }
+  
+  mat-form-field-flex{
+    width: 70%;
+  }
+
+
+.tableStyle td{
+  width:16.6%;
+  min-width: 90px;
+  padding:0 10px;
+}
+
+
+@media screen and (max-width: 767px) {
+  .tableStyle td{
+    width:auto;
+    min-width:50px;
+  }
+  .tableStyle td.mat-column-lowDate,  .tableStyle td.mat-column-highDate {
+    min-width:78px;
+  }
+}
+  

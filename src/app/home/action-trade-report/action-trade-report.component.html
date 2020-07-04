@@ -1,0 +1,124 @@
+
+
+
+<mat-radio-group aria-label="Select an option"  [hidden]='dataSource.data.length ===0'>
+  <mat-radio-button  value="PENDING" (click) = 'changeReportPar("PENDING")' 
+           [(checked)]='!completeCheck'>Pending</mat-radio-button> 
+  <mat-radio-button   [checked]='completeCheck' value="COMPLETE" (click) = 'changeReportPar("COMPLETE")'>Complete</mat-radio-button>
+</mat-radio-group>
+
+<div fxLayout="row" fxLayoutAlign="center center" *ngIf='showLoader' style='margin:75px 0px'>
+  <mat-spinner></mat-spinner>
+</div>
+
+<div fxLayoutAlign="center center" fxLayout="row" style="margin-top:20px">
+<div class="mat-elevation-z1 example-container tableHeight table-wrap fullWidth" 
+  [hidden]='dataSource.data.length ===0'>
+  <table mat-table [dataSource]="dataSource" class="tableStyle many-tbl-feild"> 
+
+    <ng-container matColumnDef="asOfDate" sticky >
+      <th mat-header-cell *matHeaderCellDef>DATE</th>
+      <td mat-cell *matCellDef="let element"> {{element.status =='PENDING'?
+                             element.pendingDate:element.completeDate}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="view" sticky>
+      <th mat-header-cell *matHeaderCellDef>VIEW</th>
+      <td mat-cell *matCellDef="let element" 
+         [ngClass]="(element.scenario=='HLC HIGHER')?'higherColor':'lowerColor'"> {{ element.view  }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="scenario">
+      <th mat-header-cell *matHeaderCellDef>SCENARIO</th>
+      <td mat-cell *matCellDef="let element" 
+          > {{
+          element.scenario  
+      }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="ticker"  >
+      <th mat-header-cell *matHeaderCellDef class="centerAlign">TICKER</th>
+      <td mat-cell *matCellDef="let element" class="centerAlign"> {{element.ticker}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="absTopBtm" >
+      <th mat-header-cell *matHeaderCellDef  class="centerAlign w50">ABS TOP/BOTTOM</th>
+      <td mat-cell *matCellDef="let element" class="rightAlign"> {{element.absTopBtm.toFixed(2)}} </td>
+    </ng-container> 
+
+    <ng-container matColumnDef="colHigh">
+      <th mat-header-cell *matHeaderCellDef class="centerAlign"> HIGH</th>
+      <td mat-cell *matCellDef="let element" class="rightAlign">
+        {{element.colHigh.toFixed(2)}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="colLow">
+      <th mat-header-cell *matHeaderCellDef class="centerAlign"> LOW </th>
+      <td mat-cell *matCellDef="let element" class="rightAlign"> {{element.colLow.toFixed(2)}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="colClose">
+      <th mat-header-cell *matHeaderCellDef class="centerAlign"> CLOSE </th>
+      <td mat-cell *matCellDef="let element" class="rightAlign"> {{element.colClose.toFixed(2)}} </td>
+    </ng-container>
+ 
+
+    <ng-container matColumnDef="daySce">
+      <th mat-header-cell *matHeaderCellDef class="centerAlign" 
+      > DAY SCENARIO </th>
+      <td mat-cell *matCellDef="let element" 
+      [ngClass]="(element.daySce=='HLC HIGHER')?'higherColor':'lowerColor'" >  {{element.daySce}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="weekSce">
+      <th mat-header-cell *matHeaderCellDef class="centerAlign"> WEEK SCENARIO </th>
+      <td mat-cell *matCellDef="let element" 
+      [ngClass]="(element.weekSce=='HLC HIGHER')?'higherColor':'lowerColor'">  {{element.weekSce}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="monthSce">
+      <th mat-header-cell *matHeaderCellDef class="centerAlign"> MONTH SCENARIO </th>
+      <td mat-cell *matCellDef="let element" 
+      [ngClass]="(element.monthSce=='HLC HIGHER')?'higherColor':'lowerColor'">  {{element.monthSce}} </td>
+    </ng-container>
+
+    
+    <ng-container matColumnDef="noOfDay">
+      <th mat-header-cell *matHeaderCellDef class="centerAlign"> {{timeTakenHeader}} </th>
+      <td mat-cell *matCellDef="let element" >  {{element.noOfDay}} </td>
+    </ng-container>
+
+    
+    <ng-container matColumnDef="perReturnFrCls">
+      <th mat-header-cell *matHeaderCellDef class="centerAlign w70"> % Return fr Closing </th>
+      <td mat-cell *matCellDef="let element" class="rightAlign"> {{
+        element.perReturnFrClos
+      }} </td>
+    </ng-container>
+
+ 
+
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef class="centerAlign"> Status </th>
+      <td mat-cell *matCellDef="let element" >
+        {{element.status}} </td>
+    </ng-container>  
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  </table>
+
+  <!-- <mat-paginator [pageSizeOptions]="[10, 20, 30]" showFirstLastButtons></mat-paginator> -->
+</div>
+</div>
+<div fxLayout="row" fxLayoutAlign="end center" class="export-wrap" >
+  <button class="export-btn" (click)='exportToExcel(dataSource.data)' 
+  *ngIf ='isAdmin' [hidden] = 'dataSource.data.length ===0'><span><mat-icon>get_app</mat-icon> EXPORT {{pageTitle}} </span> </button>
+  </div>
+  <!-- <button  mat-button (click)='exportToExcel(dataSource.data)' [hidden]='dataSource.data.length ===0' >EXPORT </button> -->
+<!-- <div style='margin:15px'>
+  <h2>.</h2>
+</div> -->

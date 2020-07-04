@@ -1,0 +1,70 @@
+
+
+<mat-radio-group aria-label="Select an option"  [hidden]='dataSource.data.length ===0'>
+    <mat-radio-button   value="tb" (click) = 'showTBSetup()' 
+             [(checked)]='isTB'>TB SETUP</mat-radio-button> 
+    <mat-radio-button   [checked]='!isTB' value="bt"
+                        (click) = 'showBTSetup()'>BT SETUP</mat-radio-button>
+  </mat-radio-group>
+  
+
+<div fxLayout="row" fxLayoutAlign="center center" *ngIf='showLoader' style='margin:75px 0px'>
+  <mat-spinner></mat-spinner>
+</div>
+
+<div fxLayoutAlign="center center" fxLayout="row" style="margin-top:20px">
+  <div class="mat-elevation-z1 example-container tableHeight table-wrap fullWidth"    [hidden]='dataSource.data.length ===0'>
+    <table mat-table [dataSource]="dataSource" class="tableStyle">
+      ['date', 'scriptName', 'timeFrame', 'setUp', 'hat_lab_date', 'hab_lab_date'];
+      <ng-container matColumnDef="date"  sticky>
+        <th mat-header-cell *matHeaderCellDef>DATE</th>
+        <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="scriptName"  sticky>
+        <th mat-header-cell *matHeaderCellDef>SCRIPT NAME</th>
+        <td mat-cell   *matCellDef="let element" style="color:#8a6407;"> {{element.scriptName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="timeFrame">
+        <th mat-header-cell *matHeaderCellDef>TIME FRAME</th>
+        <td mat-cell *matCellDef="let element" [ngClass]="(element.isHigh ==1)?'red':''"> {{element.timeFrame}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="setUp">
+        <th mat-header-cell *matHeaderCellDef>SET UP</th>
+        <td mat-cell *matCellDef="let element" [ngClass]="(element.isHigh ==0)?'green':''"> {{element.setUpName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="hat_lab_date">
+        <th mat-header-cell *matHeaderCellDef>{{isTB? 'HAT DATE': 'LAT DATE'}}</th>
+        <td mat-cell *matCellDef="let element"> {{isTB? element.hatDate :  element.latDate }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="hab_lat_date">
+        <th mat-header-cell *matHeaderCellDef>{{isTB? 'HAB DATE': 'LAB DATE'}}</th>
+        <td mat-cell *matCellDef="let element"> {{isTB? element.habDate :  element.labDate}} </td>
+      </ng-container>
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+
+    <!-- <mat-paginator [pageSizeOptions]="[10, 20, 30]" showFirstLastButtons></mat-paginator> -->
+  </div>
+</div>
+
+<div fxLayout="row" fxLayoutAlign="end center" class="export-wrap" >
+  <button  class="export-btn" (click)='exportToExcel(dataSource.data)'  
+  *ngIf='isAdmin' 
+  [hidden] = 'dataSource.data.length ===0' ><span><mat-icon>get_app</mat-icon> EXPORT</span>
+  </button>
+  </div>
+<!-- <button (click)='exportToExcel(dataSource.data)'  
+*ngIf='isAdmin'  mat-raised-button  >EXPORT </button> -->
+
+<!-- <div style='margin:15px'>
+  <h2>.</h2>
+</div> -->

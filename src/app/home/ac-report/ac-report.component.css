@@ -1,0 +1,14 @@
+td.mat-cell, td.mat-footer-cell, th.mat-header-cell{
+    padding-right: 25px;
+    padding-left: 40px;
+}
+
+.firstActionColor{
+    background: #f9f9f9
+}
+
+.secondActionColor{
+    background: #ffffef;
+}
+
+ 

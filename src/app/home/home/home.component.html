@@ -1,0 +1,221 @@
+<mat-toolbar color='primary' class="mat-elevation-z5 header">
+  <mat-toolbar-row>
+    <button class="menu-btn" mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm >
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span class="logo">Market Mantra 99 </span>
+    
+    <div class='toolBarAnchor' fxShow="true" fxHide.lt-md>
+      <nav class="navigation">
+      <a *ngIf='isAdmin || user.dataSumaryReportPerm' [routerLink]="['/home/dataSummary']" routerLinkActive='active'>
+        Data Summary
+      </a> 
+
+      <a *ngIf='isAdmin || user.tablePermission' [routerLink]="['/home/tableReport']" routerLinkActive='active'>
+        Tables Report
+      </a> 
+
+      <button   mat-button [matMenuTriggerFor]="report">Reports</button>
+      <mat-menu #report="matMenu"> 
+        <button mat-menu-item *ngIf='isAdmin || user.otReportPerm'  routerLink="/home/otReport" >OT Report</button>
+
+        <button mat-menu-item *ngIf='isAdmin || user.tbBtReportPerm'  routerLink="/home/tbBtReport" >Top & Bottom Report</button>
+        <button mat-menu-item *ngIf='isAdmin || user.resultOutPerm' [routerLink]="['/home/actionItemTrade']">
+          Action Item Trade
+        </button>
+        <button mat-menu-item *ngIf='isAdmin || user.recordSheetPerm' [routerLink]="['/home/recordSheet']">
+           RecordSheet
+        </button> 
+
+        <button mat-menu-item *ngIf='isSuperAdmin || user.mstReportPerm' [routerLink]="['/home/mstReport']">
+          Mst Report
+        </button> 
+
+        <button mat-menu-item *ngIf='isSuperAdmin || user.ddReportPerm' 
+                [routerLink]="['/home/ddReport']">
+          DD Report
+        </button> 
+
+        <button mat-menu-item *ngIf='isSuperAdmin || user.aocReportPerm' 
+                [routerLink]="['/home/aocReport']">
+          Avg Outcome Report
+        </button> 
+  
+        
+      </mat-menu>
+
+      <a *ngIf='isSuperAdmin || isAdmin' [routerLink]="['/home/userManagement']" routerLinkActive='active'>
+        Usermanagement
+      </a> 
+   
+      <button *ngIf='isSuperAdmin || isAdmin' mat-button [matMenuTriggerFor]="uploadMenu">Upload</button>
+      <mat-menu #uploadMenu="matMenu"> 
+        <button mat-menu-item (click)='openFileChooser(1)'>Nse Upload</button>
+        <button mat-menu-item (click)='openFileChooser(2)'>Bse Upload</button>
+        <button mat-menu-item (click)='openFileChooser(3)'>Commodity Upload</button>
+        <button mat-menu-item (click)='openFileChooser(4)'>Currency Upload</button>
+        <button mat-menu-item (click)='openFileChooser(5)'>World Upload</button>
+        <button mat-menu-item (click)='exportToExcel(templateSample, "Template")'>Download Template</button>
+      </mat-menu>
+    </nav>
+    </div>
+  
+    <div class="user-nav">
+      <button class='matIconHeight' mat-button [matMenuTriggerFor]="menu">
+        {{userName}}
+        <mat-icon>person</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)='logout()'>Log out</button>
+        <button mat-menu-item (click)='changePassowrd()'>Change Password</button>
+      </mat-menu>
+    </div>
+
+  </mat-toolbar-row>
+
+</mat-toolbar>
+
+
+<div class="form-group" style='display: none'>
+  <label for="file">Choose File</label>
+  <input type="file" id="fileUpload" accept=".csv" (change)="handleFileInput($event.target.files)">
+</div>
+
+
+<mat-progress-bar mode="indeterminate" *ngIf='showQueryProgress'></mat-progress-bar>
+
+  <mat-sidenav-container fxFlexFill>
+    <mat-sidenav #sidenav >
+      <mat-nav-list>
+        <button mat-menu-item *ngIf='isAdmin || user.otReportPerm'  routerLink="/home/otReport" >OT Report</button>
+
+        <button mat-menu-item *ngIf='isAdmin || user.tbBtReportPerm'  routerLink="/home/tbBtReport" >Top & Bottom Report</button>
+        <button mat-menu-item *ngIf='isAdmin || user.resultOutPerm' [routerLink]="['/home/actionItemTrade']">
+          Action Item Trade
+        </button>
+        <button mat-menu-item *ngIf='isAdmin || user.recordSheetPerm' [routerLink]="['/home/recordSheet']">
+           RecordSheet
+        </button> 
+
+        <button mat-menu-item *ngIf='isSuperAdmin || user.mstReportPerm' [routerLink]="['/home/mstReport']">
+          Mst Report
+        </button> 
+
+        <button mat-menu-item *ngIf='isSuperAdmin || user.ddReportPerm' 
+                [routerLink]="['/home/ddReport']">
+          DD Report
+        </button> 
+
+        <button mat-menu-item *ngIf='isSuperAdmin || user.aocReportPerm' 
+                [routerLink]="['/home/aocReport']">
+          Avg Outcome Report
+        </button> 
+  
+
+      <a *ngIf='isSuperAdmin || isAdmin' [routerLink]="['/home/userManagement']" routerLinkActive='active'>
+        Usermanagement
+      </a> 
+   
+      <button *ngIf='isSuperAdmin || isAdmin' mat-button [matMenuTriggerFor]="uploadMenu">Upload</button>
+      <mat-menu #uploadMenu="matMenu"> 
+        <button mat-menu-item (click)='openFileChooser(1)'>Nse Upload</button>
+        <button mat-menu-item (click)='openFileChooser(2)'>Bse Upload</button>
+        <button mat-menu-item (click)='openFileChooser(3)'>Commodity Upload</button>
+        <button mat-menu-item (click)='openFileChooser(4)'>Currency Upload</button>
+        <button mat-menu-item (click)='openFileChooser(5)'>World Upload</button>
+        <button mat-menu-item (click)='exportToExcel(templateSample, "Template")'>Download Template</button>
+      </mat-menu>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content fxFlexFill>
+      <mat-card  class="example-container mat-elevation-z6 filter-wrap" *ngIf='!isUserScreen'>
+        <mat-card-content fxLayout="row" fxLayoutAlign="start center">
+          <mat-form-field class="example-full-width sm-form-field">
+            <mat-label> Exchange  </mat-label>
+            <mat-select placeholder="Exchange" value='1' [(ngModel)]="params.exchangeId" (selectionChange)="onExchageSelected($event.value)">
+              <mat-option value="1"> NSE </mat-option>
+              <mat-option value="2"> BSE </mat-option>
+              <mat-option value="3"> COMMODITY </mat-option>
+              <mat-option value="4"> CURRENCY </mat-option>
+              <mat-option value="5"> WORLD </mat-option>
+            </mat-select>
+          </mat-form-field>
+      
+          <mat-form-field class="example-full-width sm-form-field" name='timeFrame' >
+            <mat-select placeholder="Time Frame" [(ngModel)]="params.timeFrame" (selectionChange)="onTimeFrameChange($event.value)">
+              <mat-option value="DAILY"> Daily </mat-option>
+              <mat-option value="WEEKLY"> Weekly </mat-option>
+              <mat-option value="MONTHLY">Monthly</mat-option>
+              <mat-option value="QUOTERLY" *ngIf ='isDisplayTimeFrame'>Quaterly</mat-option>
+              <mat-option value="SIX_MONTHLY" *ngIf ='isDisplayTimeFrame'>Half Yearly</mat-option>
+              <mat-option value="YEARLY" *ngIf ='isDisplayTimeFrame'>Yearly</mat-option>
+              <mat-option value="FIVE_YEAR" *ngIf ='isDisplayTimeFrame'>Five Year</mat-option>
+            </mat-select>
+          </mat-form-field>
+      
+          <mat-form-field class="example-full-width datepicker-wrap"  *ngIf='isFromDateRequired' >
+            <input matInput [matDatepicker]="picker" #fromDate [disabled]='params.timeFrame=="FIVE_YEAR" || route.url == "/home/actionItemTrade"'
+              (dateChange)="fromDateChange(fromDate.value)"
+              name='fromDate' [min]="minDate" [max]="maxDate" [(ngModel)]="params.fromDate" placeholder="From Date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+      
+          <mat-form-field class="example-full-width  datepicker-wrap">
+            <input matInput [matDatepicker]="picker1" [disabled]='params.timeFrame=="FIVE_YEAR" || route.url == "/home/actionItemTrade"' name='toDate' [max]="maxDate" [min]="minDate"
+              [(ngModel)]="params.toDate" placeholder="{{isFromDateRequired? 'To Date': 'As of Date'}}">
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+          </mat-form-field>
+      
+          <mat-form-field class="example-full-width" *ngIf='isIndexFilter'>
+            <input type="text" placeholder="Search By Index" aria-label="Number" matInput [(ngModel)]="selectedIndexName"
+              [formControl]="myControl" [matAutocomplete]="auto">
+            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="onIndexSelected($event.option.value)">
+              <mat-option *ngFor="let option of filteredOptions | async" [value]="option.indexName">
+                {{option.indexName}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+      
+      
+          <mat-form-field class="example-full-width"  *ngIf='isSecurityReq'>
+            <input type="text" placeholder="Security" aria-label="Number" matInput [formControl]="securityControll"
+              [(ngModel)]="selectedSecurityName" [matAutocomplete]="auto"> 
+            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="onSecuritySelected($event.option.value)">
+              <mat-option *ngFor="let option of filteredSecurities | async" [value]="option.ticker">
+                {{option.ticker}}
+              </mat-option>  
+            </mat-autocomplete>
+          </mat-form-field>
+      
+         <!--  <mat-form-field class="example-full-width" style='width:80px;' *ngIf = 'isTbBtReport'>
+            <mat-label> Set Up  </mat-label>
+            <mat-select placeholder="Set Up" value='1' [(ngModel)]="params.setUpName">
+              <mat-option value="1"> TB SET UP </mat-option>
+              <mat-option value="2"> BT SET UP </mat-option> 
+            </mat-select>
+          </mat-form-field> -->
+       
+          <div style='width:100%;' fxLayout="row" fxLayoutAlign="end center" class="submit-btn-wrap">
+            <button mat-raised-button (click)='getData()' color='primary'    
+             >SUBMIT</button>
+          </div>
+      
+        </mat-card-content>
+      </mat-card>
+      <main class="main-content-wrap" [ngClass]="(isUserScreen)?'no-filter':''">
+        <div  class="container">
+        <div  [@slideInAnimation]="o.isActivated? o.activatedRoute: ''" >
+          <div fxLayout="row" fxLayoutAlign="center center" *ngIf='showLoader' style='margin:75px 0px'>
+            <mat-spinner></mat-spinner>
+          </div>
+          <router-outlet #o="outlet">
+           
+          </router-outlet>
+        </div>
+        </div>
+      </main>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+   

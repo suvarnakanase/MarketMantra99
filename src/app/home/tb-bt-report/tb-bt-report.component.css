@@ -1,0 +1,22 @@
+table { 
+    width: 100%;
+  }
+  
+  th.mat-header-cell{
+    text-align: center !important
+  }
+  
+  mat-form-field-flex{
+    width: 70%;
+  }
+
+  th.mat-header-cell {
+    padding: 5px !important;
+    text-align: left;
+}
+@media screen and (max-width:767px) {
+.tableStyle td{
+  min-width : 82px;
+}
+}
+  
