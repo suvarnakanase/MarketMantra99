@@ -1,4 +1,4 @@
-<button mat-raised-button (click)='exportToExcel(dataSource)' *ngIf='dataSource.length !==0'>EXPORT </button>
+<!-- <button mat-raised-button (click)='exportToExcel(dataSource)' *ngIf='dataSource.length !==0'>EXPORT </button> -->
 
 <div fxLayout="row" fxLayoutAlign="center center" *ngIf='showLoader' style='margin:75px 0px'>
     <mat-spinner></mat-spinner>
@@ -25,3 +25,9 @@
         </tbody>
     </table>
 </div>
+
+<div fxLayout="row" fxLayoutAlign="end center" class="export-wrap" >
+    <button class="export-btn" (click)='exportToExcel(dataSource.data)' 
+    *ngIf ='isAdmin'
+    [hidden] = 'dataSource.data.length ===0'><span><mat-icon>get_app</mat-icon> EXPORT </span></button>
+    </div>

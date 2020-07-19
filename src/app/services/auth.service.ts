@@ -19,7 +19,7 @@ const httpOptions = {
 
 
 export class AuthService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private sharedService: SharedService) { }
 
   public authenticateUser(userName: string, password: string): Observable<any> { 
 
@@ -35,29 +35,23 @@ export class AuthService {
     password = password.trim();
 
     return this.http.post(Constant.LOGINAPI, JSON.stringify(new User(userName, password)), httpOptions)
-      .pipe(
-        tap((data) => console.log('')),
-        catchError(this.handleError<any>('error in login'))
+    .pipe(
+      tap((data) => console.log(data)),
+      catchError(this.handleError<any>('error in login'))
       );
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-
-      // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
-
-      // TODO: better job of transforming error for user consumption
-      this.log(`${operation} failed: ${error.message}`);
-
-      // Let the app keep running by returning an empty result.
+    return (httpError: any): Observable<T> => { 
+      console.error('ERRORR OBJ: ', httpError); // log to console instead
+      let respObj = httpError.error;
+      if(respObj&& respObj.code && respObj.message){
+        this.sharedService.openSnackBar( respObj.code +':  '+ respObj.message, 'Ok', 10);
+      }
+      else
+        this.sharedService.openSnackBar('Some error occured. Please try again later', "Ok", 10);
+    
       return of(result as T);
     };
-  }
-
-  private log(message: string) {
-    console.log(message);
-    // this.messageService.add('locationService: ' + message);
-  }
-
+  } 
 }

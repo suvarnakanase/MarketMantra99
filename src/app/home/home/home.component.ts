@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
@@ -33,7 +33,7 @@ const initialList: IndexMaster[] = [
 })
 
 export class HomeComponent extends BaseComponent<any> implements OnInit {
-
+    @Output() sidenavClose = new EventEmitter();
     isUserScreen: boolean = false;
     events: string[] = [];
     opened: boolean = true;
@@ -418,4 +418,9 @@ export class HomeComponent extends BaseComponent<any> implements OnInit {
             });
         }
     }
+
+    public onSidenavClose = () => {
+        console.log("close menu")
+        this.sidenavClose.emit();
+      }
 }

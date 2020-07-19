@@ -8,6 +8,7 @@ body { margin: 0;
      /* background: #e2e2e2; */
      font-family: Roboto, "Helvetica Neue", sans-serif; 
      background: #fbf8f8;
+     min-height:100vh;
     }
 
 .tableStyle{
@@ -322,6 +323,23 @@ td.mat-cell.green, td.mat-cell.red{
 .main-content-wrap.no-filter .table-wrap{
     max-height: calc(100vh - 145px);
 }
+.mat-sidenav-container{
+    min-height:100vh !important;
+}
+.mat-stroked-button.mat-primary{
+    border-color:#3f51b5 ;
+}
+.mat-checkbox-layout .mat-checkbox-label{
+    font-size:15px;
+}
+.mat-checkbox-checked.mat-accent .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+    background-color: #e76d24;
+}
+.mat-select-panel-wrap {
+    
+    position: relative;
+    top: 21px;
+}
 @media screen and (max-width: 1199px) {
    .filter-wrap .mat-form-field-infix{
         width:128px !important;
@@ -381,12 +399,14 @@ td.mat-cell.green, td.mat-cell.red{
     } 
     .filter-wrap .mat-card-content{
         flex-wrap: wrap;
+        justify-content: space-between !important;
     }
     .filter-wrap .example-full-width:nth-child(3n){
         margin-right: 0px;
     }
     .filter-wrap .submit-btn-wrap{
         padding-bottom: 16px;
+        width:auto !important;
     }
     .filter-wrap{
         position: relative !important;
@@ -399,7 +419,7 @@ td.mat-cell.green, td.mat-cell.red{
     
     .table-wrap {
         overflow: auto;
-        max-height: calc(100vh - 100px);
+        max-height: calc(100vh - 150px);
     }
     .main-content-wrap {
         padding:25px 0 25px;
@@ -416,6 +436,7 @@ td.mat-cell.green, td.mat-cell.red{
     }
     .mat-sidenav{
         padding:64px 0 0;
+        min-width: 220px;
     }
     .mat-nav-list > a{
         line-height: 48px;
@@ -443,6 +464,24 @@ td.mat-cell.green, td.mat-cell.red{
     .user-nav .mat-button{
         padding-right:0px;
     }
+    .mat-menu-item .mat-icon{
+        margin-right: 0px !important;
+        font-size:21px;
+        width:21px;
+    }
+    .user-mgmt-edit-form .mat-form-field-label-wrapper{
+        font-size:13px;
+      }
+
+      .user-mgmt-edit-form .mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label{
+        -webkit-transform: translateY(-1.28125em) scale(.90) perspective(100px) translateZ(.001px);
+        transform: translateY(-1.28125em) scale(.90) perspective(100px) translateZ(.001px);
+        -ms-transform: translateY(-1.28125em) scale(.90);
+      }
+      .mat-checkbox-layout .mat-checkbox-label{
+        font-size:14px;
+    }
+
 }
 @media screen and (max-width:599px) {
     /* body{

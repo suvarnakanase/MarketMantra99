@@ -10,8 +10,12 @@
   }
 
   .loginCard{
-    min-height: 100vh;
+    min-height: 100%;
     padding: 90px 20px 30px;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
   }
 .loginCard mat-card{
     width: 370px;      
@@ -58,4 +62,11 @@
     padding: 85px 20px 25px;
   }
 }
+
+@media screen and (max-width: 599px) {
+  .loginCard{
+    padding: 81px 20px 25px;
+  }
+}
+
 

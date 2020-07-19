@@ -86,37 +86,48 @@
 
   <mat-sidenav-container fxFlexFill>
     <mat-sidenav #sidenav >
-      <mat-nav-list>
-        <button mat-menu-item *ngIf='isAdmin || user.otReportPerm'  routerLink="/home/otReport" >OT Report</button>
+      <mat-nav-list >
+        <a *ngIf='isAdmin || user.dataSumaryReportPerm' [routerLink]="['/home/dataSummary']" routerLinkActive='active' (click)="sidenav.toggle()">
+          Data Summary
+        </a> 
+  
+        <a *ngIf='isAdmin || user.tablePermission' [routerLink]="['/home/tableReport']" routerLinkActive='active' (click)="sidenav.toggle()">
+          Tables Report
+        </a> 
+        <button   mat-button [matMenuTriggerFor]="mobReport">Reports <mat-icon>chevron_right
+        </mat-icon></button>
+        <mat-menu #mobReport="matMenu"> 
+        <button mat-menu-item *ngIf='isAdmin || user.otReportPerm'  routerLink="/home/otReport" (click)="sidenav.toggle()" ><mat-icon>file_copy</mat-icon> OT Report</button>
 
-        <button mat-menu-item *ngIf='isAdmin || user.tbBtReportPerm'  routerLink="/home/tbBtReport" >Top & Bottom Report</button>
-        <button mat-menu-item *ngIf='isAdmin || user.resultOutPerm' [routerLink]="['/home/actionItemTrade']">
-          Action Item Trade
+        <button mat-menu-item *ngIf='isAdmin || user.tbBtReportPerm'  routerLink="/home/tbBtReport" (click)="sidenav.toggle()"  ><mat-icon>file_copy</mat-icon> Top & Bottom Report</button>
+        <button mat-menu-item *ngIf='isAdmin || user.resultOutPerm' [routerLink]="['/home/actionItemTrade']"  (click)="sidenav.toggle()" >
+          <mat-icon>file_copy</mat-icon> Action Item Trade
         </button>
-        <button mat-menu-item *ngIf='isAdmin || user.recordSheetPerm' [routerLink]="['/home/recordSheet']">
-           RecordSheet
+        <button mat-menu-item *ngIf='isAdmin || user.recordSheetPerm' [routerLink]="['/home/recordSheet']"  (click)="sidenav.toggle()" >
+          <mat-icon>file_copy</mat-icon> RecordSheet
         </button> 
 
-        <button mat-menu-item *ngIf='isSuperAdmin || user.mstReportPerm' [routerLink]="['/home/mstReport']">
-          Mst Report
+        <button mat-menu-item *ngIf='isSuperAdmin || user.mstReportPerm' [routerLink]="['/home/mstReport']"  (click)="sidenav.toggle()" >
+          <mat-icon>file_copy</mat-icon> Mst Report
         </button> 
 
         <button mat-menu-item *ngIf='isSuperAdmin || user.ddReportPerm' 
-                [routerLink]="['/home/ddReport']">
-          DD Report
+                [routerLink]="['/home/ddReport']"  (click)="sidenav.toggle()" >
+                <mat-icon>file_copy</mat-icon> DD Report
         </button> 
 
         <button mat-menu-item *ngIf='isSuperAdmin || user.aocReportPerm' 
-                [routerLink]="['/home/aocReport']">
-          Avg Outcome Report
+                [routerLink]="['/home/aocReport']"  (click)="sidenav.toggle()" >
+                <mat-icon>file_copy</mat-icon> Avg Outcome Report
         </button> 
-  
+      </mat-menu>
 
-      <a *ngIf='isSuperAdmin || isAdmin' [routerLink]="['/home/userManagement']" routerLinkActive='active'>
+      <a *ngIf='isSuperAdmin || isAdmin' [routerLink]="['/home/userManagement']" routerLinkActive='active' >
         Usermanagement
       </a> 
    
-      <button *ngIf='isSuperAdmin || isAdmin' mat-button [matMenuTriggerFor]="uploadMenu">Upload</button>
+      <button *ngIf='isSuperAdmin || isAdmin' mat-button [matMenuTriggerFor]="uploadMenu">Upload <mat-icon>chevron_right
+      </mat-icon></button>
       <mat-menu #uploadMenu="matMenu"> 
         <button mat-menu-item (click)='openFileChooser(1)'>Nse Upload</button>
         <button mat-menu-item (click)='openFileChooser(2)'>Bse Upload</button>
@@ -132,7 +143,7 @@
         <mat-card-content fxLayout="row" fxLayoutAlign="start center">
           <mat-form-field class="example-full-width sm-form-field">
             <mat-label> Exchange  </mat-label>
-            <mat-select placeholder="Exchange" value='1' [(ngModel)]="params.exchangeId" (selectionChange)="onExchageSelected($event.value)">
+            <mat-select placeholder="Exchange" value='1' [(ngModel)]="params.exchangeId" (selectionChange)="onExchageSelected($event.value)" disableOptionCentering>
               <mat-option value="1"> NSE </mat-option>
               <mat-option value="2"> BSE </mat-option>
               <mat-option value="3"> COMMODITY </mat-option>
@@ -142,7 +153,7 @@
           </mat-form-field>
       
           <mat-form-field class="example-full-width sm-form-field" name='timeFrame' >
-            <mat-select placeholder="Time Frame" [(ngModel)]="params.timeFrame" (selectionChange)="onTimeFrameChange($event.value)">
+            <mat-select placeholder="Time Frame" [(ngModel)]="params.timeFrame" (selectionChange)="onTimeFrameChange($event.value)" disableOptionCentering >
               <mat-option value="DAILY"> Daily </mat-option>
               <mat-option value="WEEKLY"> Weekly </mat-option>
               <mat-option value="MONTHLY">Monthly</mat-option>

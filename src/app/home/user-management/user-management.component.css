@@ -41,7 +41,35 @@ table {
     width: 100%; 
     margin-bottom: 10px;
   }
-
+  .user-mgmt-edit-form{
+    margin:0 -10px;
+  }
+  .user-mgmt-edit-form .mat-form-field{
+    padding:0 10px;
+    width:25%;
+  }
+  .user-mgmt-edit-form .mat-form-field input.mat-input-element{
+    font-size:15px;
+  }
+  .user-mgmt-edit-form .mat-form-field .mat-form-field-label-wrapper{
+    font-size:15px;
+  }
+  .btn-wrap{
+    padding: 0 0 20px;
+  }
+  .btn-wrap:last-child{
+    padding: 0 0 0px;
+  }
+  .btn-wrap .mat-button{
+    line-height: 30px;
+    padding-top: 1px;
+  }
+  .btn-wrap .mat-button .material-icons{
+    margin-left: -8px;
+    margin-right: -8px;
+    position: relative;
+    top: -0.5px;
+  }
   @media screen and (max-width: 991px) {
     td.mat-column-validTill{
       min-width: 86px;
@@ -56,10 +84,10 @@ table {
     th.mat-header-cell{
       font-size: 13px;
     }
-  }
-   
-
-  @media screen and (max-width: 991px) {
+    .user-mgmt-edit-form .mat-form-field{
+     
+      width:33.33333%;
+    }
     td.mat-column-validTill{
       min-width: 78px;
     }
@@ -67,3 +95,52 @@ table {
       min-width: 150px;
     }
   }
+  @media screen and (max-width:767px) {
+    .mat-table .user-id{
+      display: none;
+    }
+    .mat-form-field-appearance-legacy .mat-form-field-label {
+      top: 1.7em;
+      font-size: 13px;
+    }
+    
+    .user-mgmt-edit-form .mat-form-field{
+      padding:0 5px;
+    }
+    
+    
+  .user-mgmt-edit-form .mat-form-field input.mat-input-element{
+    font-size:13px;
+  }
+  
+  .user-mgmt-edit-form .mat-step-header {
+    display: block;
+    padding:0 10px;
+  }
+  .btn-wrap .mat-button{
+    line-height: 27px;
+    padding-top: 1px;
+    font-size: 13px;
+    padding: 0 10px;
+  }
+  .marginRtTop{
+    margin-right: 25px;
+  }
+  }
+   
+  @media screen and (max-width:599px) {
+    .user-mgmt-edit-form .mat-form-field{
+     
+      width:50%;
+    }
+    
+  }
+
+  .mat-horizontal-stepper-header {
+    display: block!important;
+    height: auto;
+    overflow: hidden;
+    align-items: center;
+    padding: 15px;
+    text-align: center;
+}

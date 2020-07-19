@@ -49,3 +49,9 @@ table.mat-table .mat-column-scenario2{
   background: #dafdbf;
   font-weight: 500  ;
 } */
+
+@media screen and (max-width: 767px) {
+  .fullWidth.table-wrap > table .ticker-col{
+    left:78px !important;
+  }
+}

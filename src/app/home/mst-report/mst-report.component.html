@@ -96,13 +96,13 @@
    
   </div>
 </div>
-
-
 <div fxLayout="row" fxLayoutAlign="end center" class="export-wrap" >
-     <button (click)='exportToExcel(dataSource.data)' 
-    *ngIf ='isAdmin'
-     [hidden] = 'dataSource.data.length ===0'>EXPORT</button>
+     <button class="export-btn" (click)='exportToExcel(dataSource.data)' 
+     *ngIf ='isAdmin'
+     [hidden] = 'dataSource.data.length ===0'><span><mat-icon>get_app</mat-icon> EXPORT </span></button>
 </div>
+
+
 
 <!-- <button (click)='exportToExcel(dataSource.data)' 
     *ngIf ='isAdmin'
