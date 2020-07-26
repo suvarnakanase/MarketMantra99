@@ -11,15 +11,16 @@ import { MaterialDesignModule } from './material-design/material-design.module';
 
 import { HttpClientModule } from '@angular/common/http'; 
 import { ChangePasswordDialogComponent } from './home/change-password-dialog/change-password-dialog.component';
+import { CustomDialogComponent } from './custom-dialog/custom-dialog.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent , 
-    ChangePasswordDialogComponent 
+    ChangePasswordDialogComponent, CustomDialogComponent 
   ],
-  entryComponents: [ChangePasswordDialogComponent],
+  entryComponents: [ChangePasswordDialogComponent, CustomDialogComponent],
   imports: [
     BrowserModule,
     MaterialDesignModule,

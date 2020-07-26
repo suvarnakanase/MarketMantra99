@@ -4,10 +4,12 @@
  // bharat let mainUrl = 'http://116.73.9.212:7090/';
  
  
- //let mainUrl = 'http://13.235.113.122:7090/'
- let mainUrl = 'http://13.235.113.122:7086/'
+ let mainUrl = 'http://13.235.113.122:7090/';
+ let uat1991 = 'http://13.235.68.219:7090/';
+ mainUrl = uat1991;
+ //let mainUrl = 'http://13.235.113.122:7086/'
 export const Constant = {
-        LOGINAPI: mainUrl + 'api/user/loginUser',
+        LOGINAPI: mainUrl +  'api/loginAPI',   //'api/user/loginUser',
         GET_SECURITIES: mainUrl + 'api/common/getSecurity/', 
         GET_INDEXES: mainUrl + 'api/indexMaster/getAllIndex/',
         GET_NSE_TRANSACTION_DATA: mainUrl + 'api/common/getNseData',

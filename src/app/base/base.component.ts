@@ -22,6 +22,7 @@ export class BaseComponent<T> {
 
 	public isSuperAdmin : boolean = false; 
 	public user :UserMaster;
+	public showLoader :boolean =  false;
 
 	private storageService: StorageService; 
 	/**
@@ -87,6 +88,16 @@ export class BaseComponent<T> {
 		setTimeout(() => {
 			this.isShowMessage = false;
 		}, 5000);
+	}
+
+	public displayLoader(){
+		this.showLoader = true;
+		// document.getElementById("overlay").style.display = "block";
+	}
+
+	public hideLoader(){
+		this.showLoader = false;
+		// document.getElementById("overlay").style.display = "none"; 
 	}
 
 

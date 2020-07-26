@@ -75,14 +75,14 @@ md-input-container label {
 }
 
 .green{
- background:#008000;
+ background:#008000 !important;
  color: #f8f8f8;
  font-weight:500;
 }
 
 .red
 {
-    background:#B71C1C;
+    background:#B71C1C !important; 
     color: #f8f8f8;
     font-weight:500;
 }
@@ -279,12 +279,11 @@ td.mat-cell.green, td.mat-cell.red{
 .report-tbl thead th {
     font-size:13px;
     font-family: Roboto, "Helvetica Neue", sans-serif;
-    background: #263238;
-    color: #d2d2d2;
+    color: #fff;
     font-weight: 500;
     padding: 5px 8px;
     padding: 10px 8px;
-    background: #121750;
+    background: #263238;
     color: #E8EAF6;
     
 }
@@ -492,6 +491,10 @@ td.mat-cell.green, td.mat-cell.red{
     }
     .filter-wrap{
         margin-top: 57px;
+    }
+
+    .hide-xs{
+        display: none;
     }
 }
 /* @media screen and (max-width: 600px) {

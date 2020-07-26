@@ -19,10 +19,11 @@ export class RouteGaurd implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     let loggedUser: UserMaster =  this.storageService.getUser(); 
+    let dbWeb =  this.storageService.getDbWeb(); 
     
-    if (!loggedUser) {
+    if (!dbWeb) {
       this.router.navigate(['/login']); 
-      this.storageService.addUser(null);
+      this.storageService.addUser(null); 
       return false;
     } 
  
@@ -32,7 +33,7 @@ export class RouteGaurd implements CanActivate {
     }
     
     if (loggedUser.isAdmin || loggedUser.isSuperAdmin)
-      return true;
+      return true; 
 
     if (state.url.includes('recordSheet')) {
       return loggedUser.recordSheetPerm;
@@ -66,7 +67,11 @@ export class RouteGaurd implements CanActivate {
       return loggedUser.aocReportPerm;
     } 
 
-    return true;
+    if(state.url.includes('')) {
+      return true;
+    }
+
+    return false;
   }
 
   private getJson(jsonObject) {

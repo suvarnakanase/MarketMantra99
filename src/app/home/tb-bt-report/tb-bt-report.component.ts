@@ -21,8 +21,7 @@ export class TbBtReportComponent extends BaseComponent<any> implements OnInit, O
 
   dataList: any[];
   isTB = true;
-  displayedColumns: string[] = ['date', 'scriptName', 'timeFrame', 'setUp', 'hat_lab_date', 'hab_lat_date'];
-  showLoader = false;
+  displayedColumns: string[] = ['date', 'scriptName', 'timeFrame', 'setUp', 'hat_lab_date', 'hab_lat_date']; 
 
 
   private subscription: Subscription;
@@ -44,11 +43,11 @@ export class TbBtReportComponent extends BaseComponent<any> implements OnInit, O
         this.params = params;
         this.isTB = params.setUpName == "tb";
 
-        this.showLoader = true;
+        this.displayLoader();
         this.dataSource.data = [];
         this.getByPost(Constant.GET_TB_BT_REPORT, params)
         .subscribe(data => {
-          this.showLoader = false;
+          this.hideLoader();
 
           if(data && data.length>0 && data[0].messageCode == -99){
             this.sharedService.openSnackBar( data[0].message, '', 10);

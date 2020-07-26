@@ -1,14 +1,14 @@
 table { 
-    width: 100%;
-  }
-  
-  th.mat-header-cell{
-    text-align: center !important
-  }
-  
-  mat-form-field-flex{
-    width: 70%;
-  }
+  width: 100%;
+}
+
+th.mat-header-cell{
+  text-align: center !important
+}
+
+mat-form-field-flex{
+  width: 70%;
+}
 
 
 .tableStyle td{
@@ -26,5 +26,14 @@ table {
   .tableStyle td.mat-column-lowDate,  .tableStyle td.mat-column-highDate {
     min-width:78px;
   }
+
+  .mat-column-highScenario {
+    max-width: 50px;
+    width: 50px;
+    left: 0px
+  }
+
+  .mat-column-highDate {
+    left: 50px !important; 
+  }
 }
-  

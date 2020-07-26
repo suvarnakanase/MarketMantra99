@@ -20,7 +20,7 @@ export class DataSummaryReportComponent extends BaseComponent<any> implements On
   dataList: SecurityTransaction[];
   displayedColumns: string[] = ['srNo', 'date', 'high', 'low', 'closePrice',  'average', 'range','scenario'];
   pageSizeOptions: [10];
-  showLoader = false;
+  
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -43,11 +43,11 @@ export class DataSummaryReportComponent extends BaseComponent<any> implements On
 
         params.reportType = 'DATA_SUMMARY';
 
-        this.showLoader = true;
+        this.displayLoader();
         this.dataSource.data = [] 
         this.getByPost(Constant.GET_NSE_TRANSACTION_DATA, params)
           .subscribe(data => {
-            this.showLoader = false;
+            this.hideLoader();
             if(data && data.length>0 && data[0].messageCode == -99){
               this.sharedService.openSnackBar( data[0].message, '', 8);
               return;

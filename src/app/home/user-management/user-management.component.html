@@ -1,50 +1,44 @@
-<div  *ngIf="!isShowAllUser">
+<div fxLayout="column" fxLayoutAlign="center center" *ngIf="!isShowAllUser">
 
-<div fxLayout="row" fxLayoutAlign="end center" class="btn-wrap">
-  <button mat-button (click)='showAllUser(true)' class="mat-button mat-stroked-button mat-primary"><span class="material-icons">
-    navigate_before
-</span> All Users</button>
-</div>
-<div fxLayout="row" fxLayoutAlign="center center">
+
+  <button mat-button (click)='showAllUser(true)' style='text-decoration: underline; color: blue;'>All Users</button>
   <mat-horizontal-stepper [linear]="isLinear"  #stepper>
     <mat-step [stepControl]="userDetailFg">
-      <form [formGroup]="userDetailFg" class="user-mgmt-edit-form">
-        <ng-template matStepLabel class="step-lbl">User Details</ng-template>
-        <mat-form-field >
+      <form [formGroup]="userDetailFg">
+        <ng-template matStepLabel>User Details</ng-template>
+        <mat-form-field class='width210'>
           <input matInput placeholder="Full Name" formControlName="fullName" required>
         </mat-form-field>
-        <mat-form-field >
+        <mat-form-field class='width210'>
           <input matInput placeholder="Phone No."  maxlength="10" formControlName="phoneNumber"  >
         </mat-form-field>
-        <mat-form-field >
+        <mat-form-field class='width210'>
           <input matInput placeholder="Email" maxlength="100" formControlName="emailId">
         </mat-form-field>
-        <mat-form-field >
+        <mat-form-field class='width210'>
           <input matInput placeholder="Address" maxlength="200" formControlName="address">
         </mat-form-field>
-        <mat-form-field >
+        <mat-form-field class='width210'>
           <input matInput placeholder="Pan No." maxlength="13" formControlName="panNo">
         </mat-form-field>
-        <mat-form-field >
+        <mat-form-field class='width210'>
           <input matInput placeholder="Username" maxlength="20" formControlName="userName">
         </mat-form-field>
-        <mat-form-field >
+        <mat-form-field class='width210'>
           <input matInput placeholder="Password" maxlength="25" formControlName="password">
         </mat-form-field>
 
-        <div  fxLayout="row" fxLayoutAlign="end center" class="btn-wrap">
-          <button mat-button matStepperNext  class="mat-button mat-stroked-button mat-primary">Next <span class="material-icons">
-            navigate_next
-            </span></button>
+        <div>
+          <button mat-button matStepperNext>Next</button>
         </div>
       </form>
     </mat-step>
 
     <mat-step [stepControl]="permissionGrp">
-      <form [formGroup]="permissionGrp"  class="user-mgmt-edit-form">
-        <ng-template matStepLabel class="step-lbl">User Permission</ng-template>
+      <form [formGroup]="permissionGrp">
+        <ng-template matStepLabel>User Permission</ng-template>
 
-        <div style='margin-bottom: 20px !important'>
+        <div style='margin-bottom: 25px !important'>
           <mat-card-subtitle>Account Constraint</mat-card-subtitle>
         </div>
 
@@ -62,7 +56,7 @@
         </mat-form-field>
 
         <mat-divider></mat-divider>
-        <div style='margin-bottom: 20px !important; margin-top: 20px !important'>
+        <div style='margin-bottom: 25px !important; margin-top: 20px !important'>
           <mat-card-subtitle>Report View Permission</mat-card-subtitle>
         </div>
         
@@ -78,27 +72,22 @@
           <mat-checkbox *ngIf='isSuperAdmin'  class='marginRtTop' formControlName="aocReportPerm">Avg Outcome report</mat-checkbox>
      
 
-        <div style='margin: 26px 0px 0px 0px' fxLayout="row" fxLayoutAlign="space-between center" class="btn-wrap">
-          <button mat-button matStepperPrevious class="mat-button mat-stroked-button mat-primary"> <span class="material-icons">
-            navigate_before 
-            </span> Back</button>
-          <button mat-button matStepperNext (click)="saveUser()" [disabled]="!permissionGrp.valid" class="mat-button mat-stroked-button mat-primary">Next  <span class="material-icons">
-            navigate_next
-            </span></button>
+        <div style='margin: 26px 0px 0px 0px'>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext (click)="saveUser()" [disabled]="!permissionGrp.valid">Next</button>
         </div>
       </form>
     </mat-step>
 
     <mat-step>
-      <ng-template matStepLabel  class="step-lbl">Done</ng-template>
-      <button mat-button (click)="stepper.reset()" class='linkStyle createNewLink'>Create new again</button>
+      <ng-template matStepLabel>Done</ng-template>
+      <button mat-button (click)="stepper.reset()" class='linkStyle'>Create new again</button>
       <div>  
       </div>
     </mat-step>
 
   </mat-horizontal-stepper>
 </div> 
-</div>
 
 
 <div fxLayout="column" fxLayoutAlign="center center" *ngIf="isShowAllUser">
@@ -107,8 +96,8 @@
     <table mat-table   [dataSource]="dataSource">
       <!-- Position Column -->
       <ng-container matColumnDef="id" style='width: 40px'>
-        <th mat-header-cell *matHeaderCellDef class="user-id"> User Id </th>
-        <td mat-cell *matCellDef="let element"  class="user-id"> {{element.id}} </td>
+        <th mat-header-cell *matHeaderCellDef> User Id </th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
       </ng-container>
       <!-- Name Column -->
       <ng-container matColumnDef="fullName" >

@@ -29,6 +29,14 @@ mat-cell.cdk-column-date.mat-column-date{
     border-left: 1px solid rgba(0,0,0,.12);
   }
 
+  .lightGreenRow{
+    background: #d4ffd4;
+  }
+
+  .lightRedRow{
+    background: #ffdfdf;
+  }
+
   table.mat-table .mat-column-scenario{
     min-width: 100px;
   }

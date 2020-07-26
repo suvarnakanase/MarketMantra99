@@ -82,52 +82,61 @@
 </div>
 
 
-<mat-progress-bar mode="indeterminate" *ngIf='showQueryProgress'></mat-progress-bar>
-
+<mat-progress-bar mode="indeterminate" *ngIf='showQueryProgress'></mat-progress-bar> 
   <mat-sidenav-container fxFlexFill>
     <mat-sidenav #sidenav >
       <mat-nav-list >
-        <a *ngIf='isAdmin || user.dataSumaryReportPerm' [routerLink]="['/home/dataSummary']" routerLinkActive='active' (click)="sidenav.toggle()">
+        <a *ngIf='isAdmin || user.dataSumaryReportPerm' [routerLink]="['/home/dataSummary']" routerLinkActive='active' (click)="sidenav.toggle()"> 
+          <mat-icon>filter</mat-icon>
           Data Summary
         </a> 
+        <mat-divider></mat-divider>
   
         <a *ngIf='isAdmin || user.tablePermission' [routerLink]="['/home/tableReport']" routerLinkActive='active' (click)="sidenav.toggle()">
+          <mat-icon> table_chart</mat-icon>
           Tables Report
         </a> 
-        <button   mat-button [matMenuTriggerFor]="mobReport">Reports <mat-icon>chevron_right
-        </mat-icon></button>
+        <mat-divider></mat-divider>
+        <button   mat-button [matMenuTriggerFor]="mobReport">
+            <mat-icon>description</mat-icon> Reports 
+          <mat-icon>chevron_right</mat-icon></button>
         <mat-menu #mobReport="matMenu"> 
-        <button mat-menu-item *ngIf='isAdmin || user.otReportPerm'  routerLink="/home/otReport" (click)="sidenav.toggle()" ><mat-icon>file_copy</mat-icon> OT Report</button>
+        <button mat-menu-item *ngIf='isAdmin || user.otReportPerm'  routerLink="/home/otReport" (click)="sidenav.toggle()" ><mat-icon>timeline</mat-icon> OT</button>
 
-        <button mat-menu-item *ngIf='isAdmin || user.tbBtReportPerm'  routerLink="/home/tbBtReport" (click)="sidenav.toggle()"  ><mat-icon>file_copy</mat-icon> Top & Bottom Report</button>
+        <button mat-menu-item *ngIf='isAdmin || user.tbBtReportPerm'  routerLink="/home/tbBtReport" (click)="sidenav.toggle()"  ><mat-icon>file_copy</mat-icon> Top & Bottom</button>
         <button mat-menu-item *ngIf='isAdmin || user.resultOutPerm' [routerLink]="['/home/actionItemTrade']"  (click)="sidenav.toggle()" >
-          <mat-icon>file_copy</mat-icon> Action Item Trade
+            <mat-icon>assessment</mat-icon> Action Item Trade
         </button>
         <button mat-menu-item *ngIf='isAdmin || user.recordSheetPerm' [routerLink]="['/home/recordSheet']"  (click)="sidenav.toggle()" >
-          <mat-icon>file_copy</mat-icon> RecordSheet
+          <mat-icon> list_alt</mat-icon>  RecordSheet
         </button> 
 
         <button mat-menu-item *ngIf='isSuperAdmin || user.mstReportPerm' [routerLink]="['/home/mstReport']"  (click)="sidenav.toggle()" >
-          <mat-icon>file_copy</mat-icon> Mst Report
+          <mat-icon>dashboard</mat-icon> Mst
         </button> 
 
         <button mat-menu-item *ngIf='isSuperAdmin || user.ddReportPerm' 
                 [routerLink]="['/home/ddReport']"  (click)="sidenav.toggle()" >
-                <mat-icon>file_copy</mat-icon> DD Report
+                <mat-icon>flip_to_front</mat-icon> DD
         </button> 
 
         <button mat-menu-item *ngIf='isSuperAdmin || user.aocReportPerm' 
                 [routerLink]="['/home/aocReport']"  (click)="sidenav.toggle()" >
-                <mat-icon>file_copy</mat-icon> Avg Outcome Report
+                <mat-icon>domain</mat-icon> Avg Outcome
         </button> 
       </mat-menu>
 
+      <mat-divider></mat-divider>
       <a *ngIf='isSuperAdmin || isAdmin' [routerLink]="['/home/userManagement']" routerLinkActive='active' >
+        <mat-icon>supervised_user_circle</mat-icon>
         Usermanagement
       </a> 
+      <mat-divider></mat-divider>
    
-      <button *ngIf='isSuperAdmin || isAdmin' mat-button [matMenuTriggerFor]="uploadMenu">Upload <mat-icon>chevron_right
-      </mat-icon></button>
+      <button *ngIf='isSuperAdmin || isAdmin' mat-button [matMenuTriggerFor]="uploadMenu">
+        <mat-icon>cloud_upload</mat-icon> Upload Data
+        <mat-icon>chevron_right
+      </mat-icon></button> 
       <mat-menu #uploadMenu="matMenu"> 
         <button mat-menu-item (click)='openFileChooser(1)'>Nse Upload</button>
         <button mat-menu-item (click)='openFileChooser(2)'>Bse Upload</button>
@@ -138,6 +147,8 @@
       </mat-menu>
       </mat-nav-list>
     </mat-sidenav>
+    <mat-divider></mat-divider>
+
     <mat-sidenav-content fxFlexFill>
       <mat-card  class="example-container mat-elevation-z6 filter-wrap" *ngIf='!isUserScreen'>
         <mat-card-content fxLayout="row" fxLayoutAlign="start center">
@@ -229,4 +240,3 @@
       </main>
     </mat-sidenav-content>
   </mat-sidenav-container>
-   

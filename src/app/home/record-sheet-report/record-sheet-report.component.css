@@ -20,14 +20,12 @@ tbody td{
 tbody td:first-child{
   left: 0;
   z-index: 1;
-  position: sticky;
-  background: #263238;
-  font-weight: 500;
-  color: #d2d2d2;
-
+  position: sticky; 
+  font-weight: 500; 
   position: -webkit-sticky; 
-  background: #121750;
-    color: #E8EAF6;
+   background: #455A64;
+    color: #ffffff;
+    width: 100px;
 }
 
 thead th:first-child {

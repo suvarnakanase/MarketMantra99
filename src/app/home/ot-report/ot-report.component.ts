@@ -22,7 +22,7 @@ export class OtReportComponent extends BaseComponent<any>  implements OnInit, On
   displayedColumns: string[] = ['date', 'scriptName', 'scenario1', 'scenario2', 
                                 'average1',  'average2', 'typOfBtm','typeOfTop'];
   pageSizeOptions: [10];
-  showLoader = false;
+  
 
   typeScenarioCol1: string;
   typeScenarioCol2: string;
@@ -48,11 +48,11 @@ export class OtReportComponent extends BaseComponent<any>  implements OnInit, On
         params.exchangeName = ReportParams.getFileTypeEnum(params.exchangeId); 
         params.reportType = 'OT_REPORT';
 
-        this.showLoader = true;
+        this.displayLoader();
         this.dataSource.data = [] 
         this.getByPost(Constant.GET_OT_REPORT, params)
           .subscribe(data => {
-            this.showLoader = false; 
+            this.hideLoader(); 
             if (data && data.length > 0){ 
               this.setScenarioColType(params);     //take only 1st obect to define columns name.
               this.dataSource.data = data;
@@ -80,7 +80,7 @@ export class OtReportComponent extends BaseComponent<any>  implements OnInit, On
       
         this.getByPost(Constant.GET_HAT_LAT_STATUS_4_OTR, tableParam)
           .subscribe(dataObj => {
-            this.showLoader = false;
+            this.hideLoader();
             if (dataObj){  
               x.topObj =  dataObj[0].topData;
               x.btmObj = dataObj[1].btmData; 

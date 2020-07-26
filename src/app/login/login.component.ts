@@ -19,29 +19,28 @@ export class LoginComponent implements OnInit {
   constructor(private authService: AuthService,
     private router: Router,
     private storageService: StorageService,
-    private shardService: SharedService) { }
+    private shardService: SharedService) {
+     }
 
   ngOnInit() {
-    
+     
   }
 
-  authenticateUser(): void {
+  authenticateUser(): any {
     this.authService.authenticateUser(this.userName, this.password)
       .subscribe(ent => {
-        if (ent && ent.status === 200) {  
+        console.log(ent);
+        if(!ent)
+          return ;      //error handled in authService
+
+        if(ent.code == 'S100' && ent.dbWeb){
+          //login successfull;
+          this.storageService.saveDbWeb(ent.dbWeb);
           this.storageService.addUser(ent.data);
           this.router.navigate([this.getUrl(ent.data)]);
           return;
-        }
-
-        if(ent && ent.status == 400){
-          this.showMessage(ent.message); 
-        } else if (ent && ent.status === 401) {
-           this.showMessage(ent.message);
-        } else {
-          this.showMessage('Some error has encountered.');
-        }
-      });;
+        }  
+      });
   }
 
 
