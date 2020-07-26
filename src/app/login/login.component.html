@@ -1,8 +1,8 @@
-<mat-toolbar color='primary' class="header">Market Mantra 99</mat-toolbar>
+<mat-toolbar color='primary' class="header mat-elevation-z7">Market Mantra 99</mat-toolbar> 
 
 <div  class='loginCard'
       fxLayout="row" fxLayoutAlign="center center"> 
-  <mat-card  > 
+  <mat-card class='mat-elevation-z4' > 
       <mat-card-title> Login to your account </mat-card-title>
       <mat-card-subtitle> Enter your Login Credential</mat-card-subtitle>
       <form class="loginForm ">
@@ -14,7 +14,7 @@
                  placeholder="Enter your username">
           </mat-form-field>
 
-          <mat-form-field color='primary' class="loginFullWidth">
+          <mat-form-field color='primary' class="loginFullWidth"> 
             <input matInput placeholder="Enter your password" 
                   [(ngModel)]="password"
                   name='password'
@@ -23,7 +23,7 @@
           </mat-form-field>
 
 
-       <div  fxLayout="row" class="loginFullWidth padTop15" fxLayoutAlign="end center">
+       <div  fxLayout="row" class="loginFullWidth padTop15 mar20" fxLayoutAlign="end center">
          <a  [routerLink]="['/home']">Forget password?</a>
        </div>
 
@@ -34,7 +34,5 @@
 
       </mat-card-content>
     </form>
-  </mat-card>
-
-</div>
- 
+  </mat-card> 
+</div> 

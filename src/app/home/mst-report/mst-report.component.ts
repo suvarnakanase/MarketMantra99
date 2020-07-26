@@ -25,7 +25,7 @@ export class MstReportComponent extends BaseComponent<any>  implements OnDestroy
                                 'date3', 'scenario3','price3',   
                                 'query',  'action']; 
 
-  showLoader = false;  
+    
   private subscription: Subscription;
   dataSource = new MatTableDataSource<any>(); 
 
@@ -43,11 +43,11 @@ export class MstReportComponent extends BaseComponent<any>  implements OnDestroy
         params.reportType = 'OT_REPORT';
 
 
-        this.showLoader = true;
+        this.displayLoader();
         this.dataSource.data = [] 
         this.getByPost(Constant.GET_MST_REPORT, params)
           .subscribe(data => { 
-            this.showLoader = false; 
+            this.hideLoader(); 
             if (data && data.length > 0){ 
               var modifiedResultData = new DataUtil().processDataForMST(data);
               modifiedResultData.sort((val1, val2)=> {return new Date(val2.date).getTime() - new 

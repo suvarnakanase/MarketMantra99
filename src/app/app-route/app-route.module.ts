@@ -85,9 +85,19 @@ const parentRoute = [
   imports: [
     RouterModule.forChild(parentRoute),
     RouterModule.forRoot([ 
-      { path: 'login', component: LoginComponent },
-      { path: '', redirectTo: 'login', pathMatch: 'full' },
-      { path: '**', redirectTo: 'login', pathMatch: 'full' }
+      { path: 'login', component: LoginComponent }, 
+      { 
+        path: '**', 
+        component: HomeComponent,
+        canActivate: [RouteGaurd],
+        pathMatch: 'full' 
+      }, 
+      { 
+        path: '', 
+        component: HomeComponent,
+        canActivate: [RouteGaurd],
+        pathMatch: 'full' 
+      },  
     ]),
 
   ],

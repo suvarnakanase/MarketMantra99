@@ -27,7 +27,7 @@ export class PointerSheetComponent  extends BaseComponent<any> implements OnInit
                                 'rc14_6', 'rc23_6','rc38_2','rc61_8', 'rc100',  'rc127_2', 'rc161_8', 'rc261_8', 
                                 'fc14_6', 'fc23_6','fc38_2', 'fc61_8', 'fc100',  'fc127_2', 'fc161_8', 'fc261_8'];
   pageSizeOptions: [10];
-  showLoader = false;
+  
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -54,11 +54,11 @@ export class PointerSheetComponent  extends BaseComponent<any> implements OnInit
 
         params.reportType = 'DATA_SUMMARY';
 
-        this.showLoader = true;
+        this.displayLoader();
         this.dataSource.data = [] 
         this.getByPost(Constant.GET_NSE_TRANSACTION_DATA, params)
           .subscribe(data => {
-            this.showLoader = false;
+            this.hideLoader();
             if(data && data.length>0 && data[0].messageCode == -99){
               this.sharedService.openSnackBar( data[0].message, '', 8);
               return;
@@ -100,7 +100,7 @@ export class PointerSheetComponent  extends BaseComponent<any> implements OnInit
   //    params.toDate =  DateUtil.addDays(1,  new Date(obj.date));
      
   //    this.getByPost(Constant.GET_NSE_TRANSACTION_DATA, params).subscribe(data => {
-  //           this.showLoader = false;
+  //           this.hideLoader();
   //           if(data && data.length>0 && data[0].messageCode == -99){ 
   //             return;
   //           }

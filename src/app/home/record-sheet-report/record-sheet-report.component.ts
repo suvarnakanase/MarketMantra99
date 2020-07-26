@@ -18,7 +18,7 @@ export class RecordSheetReportComponent extends BaseComponent<any> implements On
 
   displayedColumns: string[] = [];
   columns: any[] = [];
-  showLoader = false;
+  
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -39,11 +39,11 @@ export class RecordSheetReportComponent extends BaseComponent<any> implements On
       params => {
         if (this.isValid(params)) {
           params.reportType = 'RECORD_REPORT';
-          this.showLoader = true;
+          this.displayLoader();
           this.dataSource = [];
           this.getByPost(Constant.GET_CROSS_REPORT_DATA, params)
             .subscribe(data => {
-              this.showLoader = false;
+              this.hideLoader();
               if(data && data.length>0 && data[0].messageCode == -99){
                 this.sharedService.openSnackBar( data[0].message, '', 10);
                 return;

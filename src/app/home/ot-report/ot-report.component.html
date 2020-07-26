@@ -16,9 +16,9 @@
           </ng-container>
 
         <ng-container matColumnDef="scriptName" sticky>
-            <th mat-header-cell *matHeaderCellDef class="leftAlign ticker-col">Ticker</th>
-            <td mat-cell *matCellDef="let element " 
-                class="leftAlign tickerStyle ticker-col" 
+            <th mat-header-cell *matHeaderCellDef class="leftAlign">Ticker</th>
+            <td mat-cell *matCellDef="let element" 
+                class="leftAlign tickerStyle" 
                  matTooltipClass="line-broken-tooltip"
                 [matTooltip] = "getHLCloseToolTipValue(element)"> {{element.tickerCode}} </td>
           </ng-container>

@@ -21,8 +21,8 @@
  export class AcReportComponent extends BaseComponent<any> implements OnInit { 
  	dataList: any[];
  	displayedColumns: string[] = ['srNo', 'date', 'ticker',  'outcome' ]; 
- 	showLoader = false;  
-
+ 	   
+ 	
  	private subscription: Subscription;
  	dataSource = new MatTableDataSource<any[]>();
 
@@ -39,11 +39,11 @@
  			params => {
  				if (!this.isValid(params)) return; 
  				params.reportType = 'AocReport';  
- 				this.showLoader = true;
+ 				this.displayLoader();
  				this.dataSource.data = [] 
  				this.getByPost(Constant.GET_AOC_REPORT, params)
  				.subscribe(data => { 
- 					this.showLoader = false;   
+ 					this.hideLoader();   
  					console.log(data);
  					if (data && data.length > 0){ 
  						this.dataSource.data = data;

@@ -1,7 +1,76 @@
-.width210 {  
+/* .width210 {  
     width:210px !important
     
 }
+
+
+table { 
+    width: 100%;
+    text-align: center;
+  }
+  
+  th.mat-header-cell{
+    text-align: center;
+    font-size: 14px;
+    font-weight:500; 
+    background: #e7ffef;
+    color: black;
+  }
+
+  .marginRtTop{
+    margin-right: 45px;
+    margin-top: 15px;
+  }
+  
+  mat-form-field-flex{
+    width: 70%;
+  }
+
+  td.mat-cell{
+    padding-left:3px;
+    padding-right:3px;
+  }
+
+  .linkStyle{
+    cursor: pointer;
+    text-decoration: underline;
+    color: blue;
+  } 
+
+  .createNewLink{
+    width: 100%; 
+    margin-bottom: 10px;
+  }
+
+  @media screen and (max-width: 991px) {
+    td.mat-column-validTill{
+      min-width: 86px;
+    }
+    th.mat-header-cell{
+      font-size: 13px;
+    }
+  } @media screen and (max-width: 991px) {
+    td.mat-column-validTill{
+      min-width: 86px;
+    }
+    th.mat-header-cell{
+      font-size: 13px;
+    }
+  }
+   
+
+  @media screen and (max-width: 991px) {
+    td.mat-column-validTill{
+      min-width: 78px;
+    }
+    td.mat-column-fullName{
+      min-width: 150px;
+    }
+  } */
+
+  /* .width210 {  
+    width:210px !important;
+} */
 
 
 table { 
@@ -126,21 +195,34 @@ table {
   .marginRtTop{
     margin-right: 25px;
   }
+  ::ng-deep .mat-horizontal-stepper-header-container{
+    flex-wrap: wrap !important;
+    white-space: nowrap !important;
+    padding: 8px 0 15px !important;
+  }
+  ::ng-deep .mat-horizontal-stepper-header{
+    padding: 10px 15px !important;
+    width: 100% !important;
+    height: auto !important;
+    
+  }
+  ::ng-deep .mat-stepper-horizontal-line{
+    border-top-width: 0 !important;
+    
+    height: 20px !important;
+    margin: -5px 26px !important;
+    min-width: 1px !important;
+    border-left-width: 1px !important;
+    border-left-style: solid !important;
+    border-left-color: rgba(0,0,0,.12) !important;
+  }
   }
    
   @media screen and (max-width:599px) {
     .user-mgmt-edit-form .mat-form-field{
-     
       width:50%;
     }
     
   }
 
-  .mat-horizontal-stepper-header {
-    display: block!important;
-    height: auto;
-    overflow: hidden;
-    align-items: center;
-    padding: 15px;
-    text-align: center;
-}
+ 

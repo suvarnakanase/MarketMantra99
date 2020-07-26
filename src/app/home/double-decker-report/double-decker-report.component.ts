@@ -19,7 +19,7 @@ export class DoubleDeckerReportComponent extends BaseComponent<any> implements O
     dataList: any[];
     displayedColumns: string[] = ['srNo', 'reportDate', 'ticker', '1stAction', 'date1',
                                   '2ndAction', 'date2']; 
-    showLoader = false;  
+      
      
     private subscription: Subscription;
     dataSource = new MatTableDataSource<any[]>();
@@ -39,11 +39,11 @@ export class DoubleDeckerReportComponent extends BaseComponent<any> implements O
   
           params.reportType = 'DD_Report'; 
   
-          this.showLoader = true;
+          this.displayLoader();
           this.dataSource.data = [] 
           this.getByPost(Constant.GET_DD_REPORT, params)
             .subscribe(data => {
-              this.showLoader = false;  
+              this.hideLoader();  
               console.log(data)
                
               if (data && data.length > 0){ 

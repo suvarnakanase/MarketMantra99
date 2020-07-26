@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
@@ -33,7 +33,7 @@ const initialList: IndexMaster[] = [
 })
 
 export class HomeComponent extends BaseComponent<any> implements OnInit {
-    @Output() sidenavClose = new EventEmitter();
+
     isUserScreen: boolean = false;
     events: string[] = [];
     opened: boolean = true;
@@ -41,7 +41,7 @@ export class HomeComponent extends BaseComponent<any> implements OnInit {
     params: ReportParams = new ReportParams;
     minDate: Date = this.user.reportViewFrDate;
     maxDate = new Date();
-    showLoader = false; 
+     
     fileToUpload: File = null;
 
     isSecurityReq: boolean = true;
@@ -372,7 +372,7 @@ export class HomeComponent extends BaseComponent<any> implements OnInit {
             return;
         }
 
-        this.showLoader = true;
+        this.displayLoader();
         this.service.postUploadFile(this.fileToUpload, this.params.fileTypeId, Constant.UPLOAD_FILE)
         .subscribe(resp => {
             if (resp && resp.messageCode !== 0) {
@@ -386,7 +386,7 @@ export class HomeComponent extends BaseComponent<any> implements OnInit {
             }
 
 
-            this.showLoader = false;
+            this.hideLoader();
         });
     }
 
@@ -418,9 +418,4 @@ export class HomeComponent extends BaseComponent<any> implements OnInit {
             });
         }
     }
-
-    public onSidenavClose = () => {
-        console.log("close menu")
-        this.sidenavClose.emit();
-      }
 }

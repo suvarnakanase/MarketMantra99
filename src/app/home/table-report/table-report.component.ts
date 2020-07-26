@@ -19,7 +19,7 @@ export class TableReportComponent extends BaseComponent<any> implements OnInit, 
 
   dataList: any[];
   displayedColumns: string[] = ['highScenario', 'highDate', 'high', 'low', 'lowDate', 'lowScenario'];
-  showLoader = false;
+  
 
   private subscription: Subscription;
   dataSource = new MatTableDataSource<any>();
@@ -37,11 +37,11 @@ export class TableReportComponent extends BaseComponent<any> implements OnInit, 
 
         params.reportType = Constant.TABLE_REPORT;
 
-        this.showLoader = true;
+        this.displayLoader();
         this.dataSource.data = [];
         this.getByPost(Constant.GET_NSE_TABLE_REPORT, params)
           .subscribe(data => {
-            this.showLoader = false;
+            this.hideLoader();
             if(data && data.length>0 && data[0].messageCode == -99){
               this.sharedService.openSnackBar( data[0].message, '', 10);
               return;
